@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/pet-clculator-calories/static/js/main.6813110a.chunk.js",
-    "main.js.map": "/pet-clculator-calories/static/js/main.6813110a.chunk.js.map",
+    "main.js": "/pet-clculator-calories/static/js/main.887b2c71.chunk.js",
+    "main.js.map": "/pet-clculator-calories/static/js/main.887b2c71.chunk.js.map",
     "runtime-main.js": "/pet-clculator-calories/static/js/runtime-main.020ca534.js",
     "runtime-main.js.map": "/pet-clculator-calories/static/js/runtime-main.020ca534.js.map",
     "static/css/2.39e9d2b1.chunk.css": "/pet-clculator-calories/static/css/2.39e9d2b1.chunk.css",
@@ -12,13 +12,12 @@
     "index.html": "/pet-clculator-calories/index.html",
     "static/css/2.39e9d2b1.chunk.css.map": "/pet-clculator-calories/static/css/2.39e9d2b1.chunk.css.map",
     "static/js/2.3c5f8e9d.chunk.js.LICENSE.txt": "/pet-clculator-calories/static/js/2.3c5f8e9d.chunk.js.LICENSE.txt",
-    "static/media/cyrillic.css": "/pet-clculator-calories/static/media/inter-cyrillic-900-normal.8ba9d16d.woff2",
-    "static/media/logo.d2ce8e49.png": "/pet-clculator-calories/static/media/logo.d2ce8e49.png"
+    "static/media/cyrillic.css": "/pet-clculator-calories/static/media/inter-cyrillic-900-normal.8ba9d16d.woff2"
   },
   "entrypoints": [
     "static/js/runtime-main.020ca534.js",
     "static/css/2.39e9d2b1.chunk.css",
     "static/js/2.3c5f8e9d.chunk.js",
-    "static/js/main.6813110a.chunk.js"
+    "static/js/main.887b2c71.chunk.js"
   ]
 }
