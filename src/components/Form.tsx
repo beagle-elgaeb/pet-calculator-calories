@@ -1,10 +1,10 @@
-import styled from "@emotion/styled";
+import styled from "@emotion/styled/macro";
 import { useFormik } from "formik";
 import { useEffect, useState, KeyboardEvent } from "react";
 import { lightPurple, mediumPurple, purple, yellow } from "../styles/colors";
-import { calcСalories } from "../utils/math";
-import { Input, Label } from "../styles/patterns";
-import { validationSchema } from "../utils/validation";
+import { calcWordEnding, calcСalories } from "../utils/math";
+import { HoverAnimation, InputPattern, LabelPattern } from "../styles/patterns";
+import { mealsValidationSchema } from "../utils/validation";
 import { useDispatch } from "react-redux";
 import { addMeal } from "../redux/mealSlise";
 
@@ -25,7 +25,7 @@ function Form() {
       carb: number | null;
       weight: number | null;
     },
-    validationSchema: validationSchema,
+    validationSchema: mealsValidationSchema,
     onSubmit: (values, { resetForm }) => {
       dispatch(addMeal({ ...values, calories }));
       resetForm();
@@ -56,7 +56,7 @@ function Form() {
       <Title>БЖУ на 100 грамм:</Title>
       <Grid>
         <InputContainer>
-          <InputBJU
+          <Input
             placeholder="елки"
             name="protein"
             type="number"
@@ -68,14 +68,15 @@ function Form() {
             value={protein ?? ""}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            autoComplete="off"
           />
-          <LabelBJU fullness={!!protein} isValid={!getError("protein")}>
+          <Label fullness={!!protein} isValid={!getError("protein")}>
             {!!protein ? "Белки" : "Б"}
-          </LabelBJU>
+          </Label>
           <Error isValid={!getError("protein")}>{getError("protein")}</Error>
         </InputContainer>
         <InputContainer>
-          <InputBJU
+          <Input
             placeholder="иры"
             name="fat"
             type="number"
@@ -87,14 +88,15 @@ function Form() {
             value={fat ?? ""}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            autoComplete="off"
           />
-          <LabelBJU fullness={!!fat} isValid={!getError("fat")}>
+          <Label fullness={!!fat} isValid={!getError("fat")}>
             {!!fat ? "Жиры" : "Ж"}
-          </LabelBJU>
+          </Label>
           <Error isValid={!getError("fat")}>{getError("fat")}</Error>
         </InputContainer>
         <InputContainer>
-          <InputBJU
+          <Input
             placeholder="глеводы"
             name="carb"
             type="number"
@@ -106,32 +108,43 @@ function Form() {
             value={carb ?? ""}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            autoComplete="off"
           />
-          <LabelBJU fullness={!!carb} isValid={!getError("carb")}>
+          <Label fullness={!!carb} isValid={!getError("carb")}>
             {!!carb ? "Углеводы" : "У"}
-          </LabelBJU>
+          </Label>
           <Error isValid={!getError("carb")}>{getError("carb")}</Error>
         </InputContainer>
       </Grid>
       <Title>Вес продукта:</Title>
       <InputContainer>
-        <InputG
+        <Input
           placeholder="рамм"
           type="number"
           min="0"
           max="1000"
           step="0.01"
           onKeyPress={onKeyPress}
+          onFocus={() => formik.setFieldValue("weight", "")}
           isValid={!getError("weight")}
           {...formik.getFieldProps("weight")}
+          autoComplete="off"
         />
-        <LabelG fullness={!!weight} isValid={!getError("weight")}>
+        <Label fullness={!!weight} isValid={!getError("weight")}>
           {!!weight ? "Граммы" : "Г"}
-        </LabelG>
+        </Label>
         <Error isValid={!getError("weight")}>{getError("weight")}</Error>
       </InputContainer>
-      <SaveButton type="submit" disabled={!formik.isValid}>
-        {` Добавить ${calories === 0 ? "немного" : calories} килокалорий`}
+      <SaveButton
+        type="submit"
+        aria-label="Добавить запись"
+        disabled={!formik.isValid}
+      >
+        {` Добавить ${
+          calories === 0
+            ? `немного килокалорий`
+            : `${calories} ${calcWordEnding(calories)}`
+        }`}
       </SaveButton>
     </FormContainer>
   );
@@ -158,22 +171,18 @@ const Grid = styled.div`
 `;
 
 const InputContainer = styled.div`
-  height: 36px;
+  height: 40px;
   width: 100%;
   position: relative;
   margin: 0 0 10px;
 `;
 
-const LabelBJU = styled.p<{ fullness: boolean; isValid: boolean }>`
-  ${Label}
-
-  ${({ fullness }) => (fullness ? "left: 5px;" : "right: 80%;")};
+const Label = styled.p<{ fullness: boolean; isValid: boolean }>`
+  ${LabelPattern}
 `;
 
-const InputBJU = styled.input<{ isValid: boolean }>`
-  ${Input};
-
-  padding-left: 21%;
+const Input = styled.input<{ isValid: boolean }>`
+  ${InputPattern};
 `;
 
 const Error = styled.div<{ isValid: boolean }>`
@@ -188,22 +197,9 @@ const Error = styled.div<{ isValid: boolean }>`
   padding: 0 10px;
 `;
 
-const LabelG = styled.p<{ fullness: boolean; isValid: boolean }>`
-  ${Label}
-
-  ${({ fullness }) => (fullness ? "left: 10px;" : "right: 94%;")};
-`;
-
-const InputG = styled.input<{ isValid: boolean }>`
-  ${Input};
-
-  padding-left: 6.2%;
-`;
-
 const SaveButton = styled.button<{ disabled: boolean }>`
   height: 36px;
   width: 100%;
-  position: relative;
   box-sizing: border-box;
   background: ${lightPurple};
   border: 1px solid ${mediumPurple};
@@ -212,10 +208,11 @@ const SaveButton = styled.button<{ disabled: boolean }>`
   font-size: 18px;
   line-height: 20px;
   color: ${({ disabled }) => (disabled ? `${mediumPurple}` : `${purple}`)};
-  cursor: pointer;
-  margin: 10px 0;
+  margin: 60px 0;
 
   :hover {
     box-shadow: 0 0 5px 1px ${mediumPurple};
   }
+
+  ${HoverAnimation}
 `;

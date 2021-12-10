@@ -2,7 +2,7 @@ import styled from "@emotion/styled/macro";
 import { useSelector } from "react-redux";
 import { State } from "../redux/types";
 import { mediumPurple, purple, white, yellow } from "../styles/colors";
-import { table } from "../styles/patterns";
+import { Table } from "../styles/patterns";
 import Meals from "./Meals";
 
 function Days() {
@@ -15,11 +15,11 @@ function Days() {
         <Day key={i}>
           <DayTitle>{date}</DayTitle>
           <MealTitles>
-            <SubTitle>к</SubTitle>
+            <SubTitle>{""}</SubTitle>
             <SubTitle>б</SubTitle>
             <SubTitle>ж</SubTitle>
             <SubTitle>у</SubTitle>
-            <SubTitle>вес</SubTitle>
+            <SubTitle>к</SubTitle>
           </MealTitles>
           <Meals date={date} />
         </Day>
@@ -31,7 +31,7 @@ function Days() {
 export default Days;
 
 const DaysContainer = styled.div`
-  margin: 40px 0;
+  margin: 0;
 `;
 
 const Day = styled.div`
@@ -39,7 +39,7 @@ const Day = styled.div`
   border: 1px solid ${mediumPurple};
   border-radius: 5px;
   margin: 20px 0;
-  padding: 20px 10px;
+  padding: 30px 10px;
 `;
 
 const DayTitle = styled.h3`
@@ -57,9 +57,9 @@ const DayTitle = styled.h3`
 `;
 
 const MealTitles = styled.div`
-  ${table}
+  ${Table}
   justify-items: center;
-  padding: 10px;
+  margin: 0 0 15px;
 `;
 
 const SubTitle = styled.div`

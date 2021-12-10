@@ -1,8 +1,9 @@
 import styled from "@emotion/styled/macro";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MealItem, State } from "../redux/types";
-import { darkYellow, mediumPurple } from "../styles/colors";
-import { table } from "../styles/patterns";
+import { brightPurple, darkYellow, mediumPurple } from "../styles/colors";
+import { HoverAnimation, Table } from "../styles/patterns";
+import { remove } from "../redux/mealSlise";
 
 function Meals({ date }: { date: string }) {
   const meals = useSelector((state: State) => state.meals);
@@ -27,25 +28,37 @@ function Meals({ date }: { date: string }) {
 
   mealsByDay = { ...mealsByDay, [date]: mealsInDay };
 
+  const dispatch = useDispatch();
+
+  function handleRemoveTask(meal: MealItem) {
+    dispatch(remove({ id: meal.id }));
+  }
+
   return (
     <>
       <MealsContainer>
         {mealsByDay[date].map((meal, i) => (
           <Meal key={i}>
+            <Parametr>
+              <DeleteButton
+                type="button"
+                onClick={() => handleRemoveTask(meal)}
+                aria-label="Удалить приём пищи"
+              ></DeleteButton>
+            </Parametr>
+            <Parametr>{meal.protein}</Parametr>
+            <Parametr>{meal.fat}</Parametr>
+            <Parametr>{meal.carb}</Parametr>
             <Parametr>{meal.calories}</Parametr>
-            <Parametr>{(meal.protein! * meal.weight!) / 100}</Parametr>
-            <Parametr>{(meal.fat! * meal.weight!) / 100}</Parametr>
-            <Parametr>{(meal.carb! * meal.weight!) / 100}</Parametr>
-            <Parametr>{meal.weight}</Parametr>
           </Meal>
         ))}
       </MealsContainer>
       <Totals>
-        <Total>{summCalories}</Total>
-        <Total>{summProtein}</Total>
-        <Total>{summFat}</Total>
-        <Total>{summCarb}</Total>
-        <Total>{summWeight}</Total>
+        <Total>{Math.round(summWeight)} г.</Total>
+        <Total>{Math.round(summProtein)}</Total>
+        <Total>{Math.round(summFat)}</Total>
+        <Total>{Math.round(summCarb)}</Total>
+        <TotalCalories>{summCalories}</TotalCalories>
       </Totals>
     </>
   );
@@ -58,18 +71,21 @@ const MealsContainer = styled.div`
 `;
 
 const Meal = styled.div`
-  ${table}
+  ${Table}
   justify-items: start;
-  padding: 0 10px 6px 10px;
+  padding: 0 0 6px 0;
 
   :last-child {
-    padding: 0 10px;
+    padding: 0;
   }
 `;
 
 const Parametr = styled.div`
   width: 100%;
   border-right: 1px solid ${mediumPurple};
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 300;
   margin: 0;
 
   :last-child {
@@ -78,21 +94,58 @@ const Parametr = styled.div`
 `;
 
 const Totals = styled.div`
-  ${table}
+  ${Table}
   justify-items: center;
-  padding: 10px;
+  padding: 15px 0 0;
 `;
 
 const Total = styled.div`
   width: 100%;
   border-right: 1px solid ${mediumPurple};
-  font-size: 18px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 18px;
   font-weight: 500;
-  color: ${darkYellow};
+  color: ${brightPurple};
   margin: 0;
 
   :last-child {
     border-right: none;
   }
+`;
+
+const TotalCalories = styled(Total)`
+  color: ${darkYellow};
+`;
+
+const DeleteButton = styled.button`
+  height: 13px;
+  width: 13px;
+  background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0) 8px,
+      ${darkYellow} 8px,
+      ${darkYellow} 10px,
+      rgba(255, 255, 255, 0) 10px,
+      rgba(255, 255, 255, 0) 18px
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0) 8px,
+      ${darkYellow} 8px,
+      ${darkYellow} 10px,
+      rgba(255, 255, 255, 0) 10px,
+      rgba(255, 255, 255, 0) 18px
+    );
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  margin: 0 auto;
+
+  :hover {
+    transform: rotate(10deg);
+  }
+
+  ${HoverAnimation}
 `;

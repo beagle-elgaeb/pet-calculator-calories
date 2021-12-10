@@ -7,24 +7,27 @@ export const Container = css`
   padding: 20px 0;
 `;
 
-export const Label = ({
+export const LabelPattern = ({
   fullness,
   isValid,
 }: {
   fullness: boolean;
   isValid: boolean;
 }) => css`
+  width: ${fullness ? "fit-content" : "24px"};
   position: absolute;
-  top: ${fullness ? "-6px" : "6px"};
-  ${fullness ? `background: ${lightPurple};` : ""};
-  ${fullness ? (isValid ? "" : `border-top: 1px solid ${yellow};`) : ""};
+  top: ${fullness ? "-6px" : "8px"};
+  left: ${fullness ? "5px" : "1px"};
+  background: ${lightPurple};
+  border-top: ${fullness ? (isValid ? "none" : `1px solid ${yellow}`) : "none"};
   font-size: ${fullness ? "10px" : "20px"};
   line-height: ${fullness ? "12px" : "22px"};
+  text-align: right;
   margin: 0;
-  ${fullness ? "padding: 0 10px;" : ""};
+  padding: ${fullness ? "0 10px" : "0"};
 `;
 
-export const Input = ({ isValid }: { isValid: boolean }) => css`
+export const InputPattern = ({ isValid }: { isValid: boolean }) => css`
   height: 100%;
   width: 100%;
   box-sizing: border-box;
@@ -38,12 +41,12 @@ export const Input = ({ isValid }: { isValid: boolean }) => css`
   font-size: 18px;
   line-height: 20px;
   color: ${purple};
-  padding: 0 10px;
+  padding: 0 10px 0 25px;
 
   ::placeholder {
-    font-size: 14px;
-    line-height: 16px;
-    font-weight: 300;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 200;
     color: ${mediumPurple};
   }
 
@@ -58,8 +61,13 @@ export const Input = ({ isValid }: { isValid: boolean }) => css`
   }
 `;
 
-export const table = css`
+export const Table = css`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   row-gap: 10px;
+`;
+
+export const HoverAnimation = css`
+  transition: all 0.2s ease-out;
+  cursor: pointer;
 `;

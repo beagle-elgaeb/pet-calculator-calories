@@ -21,10 +21,10 @@ function getMonth(date: Date) {
 }
 
 export const mealSlise = createSlice({
-  name: "todoItem",
+  name: "meal",
   initialState: [] as MealItem[],
   reducers: {
-    loadState: (_, { payload }: PayloadAction<MealItem[]>) => {
+    loadStateMeals: (_, { payload }: PayloadAction<MealItem[]>) => {
       return payload;
     },
     addMeal: (
@@ -35,17 +35,24 @@ export const mealSlise = createSlice({
 
       state.unshift({
         id: Date.now(),
-        protein: payload.protein,
-        fat: payload.fat,
-        carb: payload.carb,
+        protein: Math.round(payload.protein! * payload.weight!) / 100,
+        fat: Math.round(payload.fat! * payload.weight!) / 100,
+        carb: Math.round(payload.carb! * payload.weight!) / 100,
         weight: payload.weight,
         calories: payload.calories,
-        date: `${date.getDate().toString().padStart(2, "0")} ${getMonth(date)}`,
+        date: `${date.getDate().toString()} ${getMonth(date)}`,
       });
+    },
+    remove: (state, { payload }: PayloadAction<{ id: number }>) => {
+      const index = state.findIndex(({ id }) => id === payload.id);
+
+      if (index !== -1) {
+        state.splice(index, 1);
+      }
     },
   },
 });
 
-export const { loadState, addMeal } = mealSlise.actions;
+export const { loadStateMeals, addMeal, remove } = mealSlise.actions;
 
 export default mealSlise.reducer;

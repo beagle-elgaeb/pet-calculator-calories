@@ -1,11 +1,35 @@
-import styled from "@emotion/styled";
-import { purple, yellow } from "../styles/colors";
-import { Container } from "../styles/patterns";
+import styled from "@emotion/styled/macro";
+import { Link } from "react-router-dom";
+import {
+  brightPurple,
+  darkYellow,
+  purple,
+  white,
+  yellow,
+} from "../styles/colors";
+import { Container, HoverAnimation } from "../styles/patterns";
 
-function Header() {
+type PropsType = {
+  onMenuClick: () => void;
+  popupOpened: boolean;
+};
+
+function Header({ onMenuClick, popupOpened }: PropsType) {
   return (
     <HeaderContainer>
-      <Title>Минималистичный калькулятор калорий</Title>
+      <Logo to="/" visible={popupOpened}>
+        <LogoInside></LogoInside>
+      </Logo>
+      <Center>
+        <Title>Минималистичный</Title>
+        <Title>калькулятор</Title>
+        <Title> калорий</Title>
+      </Center>
+      <MenuButton
+        type="button"
+        onClick={onMenuClick}
+        aria-label="Открыть меню"
+      ></MenuButton>
     </HeaderContainer>
   );
 }
@@ -14,6 +38,40 @@ export default Header;
 
 const HeaderContainer = styled.header`
   ${Container};
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid ${yellow};
+`;
+
+const Logo = styled(Link)<{ visible: boolean }>`
+  height: 19px;
+  width: 22px;
+  display: block;
+  ${({ visible }) => (visible ? "visibility: hidden" : "visibility: visible")};
+  background: ${yellow};
+  border: 2px solid ${purple};
+  border-top-left-radius: 6px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 6px;
+  transition: all 0.2s ease-out;
+
+  :hover {
+    margin: 2px 0 0 0;
+  }
+
+  ${HoverAnimation}
+`;
+
+const LogoInside = styled.div`
+  height: 19px;
+  width: 19px;
+  box-sizing: border-box;
+  background: radial-gradient(circle, ${brightPurple} 0%, ${yellow} 50%);
+  border: 2px solid ${brightPurple};
+  border-radius: 99em;
+  margin: auto;
 `;
 
 const Title = styled.h1`
@@ -23,4 +81,33 @@ const Title = styled.h1`
   color: ${yellow};
   text-shadow: 0 1px 1px ${purple};
   margin: 0;
+`;
+
+const Center = styled.div``;
+
+const MenuButton = styled.button`
+  height: 19px;
+  width: 22px;
+  background: linear-gradient(
+    180deg,
+    ${darkYellow} 0,
+    ${darkYellow} 3px,
+    ${white} 3px,
+    ${white} 8px,
+    ${purple} 8px,
+    ${purple} 11px,
+    ${white} 11px,
+    ${white} 16px,
+    ${darkYellow} 16px,
+    ${darkYellow} 19px
+  );
+  border: none;
+  outline: none;
+  margin: 0;
+
+  :hover {
+    margin: 2px 0 0 0;
+  }
+
+  ${HoverAnimation}
 `;

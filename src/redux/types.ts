@@ -8,6 +8,19 @@ export interface MealItem {
   date: string;
 }
 
+export interface Profile {
+  name: string;
+  age: string;
+  stature: string;
+  weight: string;
+  sex: string;
+  activityLevel: string;
+  purpose: string;
+  baseMetabolism: number;
+  purposeMetabolism: number;
+}
+
 export interface State {
   meals: MealItem[];
+  profile: Profile;
 }

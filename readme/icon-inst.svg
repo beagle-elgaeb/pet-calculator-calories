@@ -1,0 +1,54 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_f)">
+<path d="M10 10C10.625 9.375 11.5 9 12.75 9H35.25C36.5 9 37.375 9.375 38 10C38.625 10.625 39 11.5 39 12.75V35.25C39 36.5 38.625 37.375 38 38C37.375 38.625 36.5 39 35.25 39H12.75C11.5 39 10.625 38.625 10 38C9.375 37.375 9 36.5 9 35.25V12.75C9 11.5 9.375 10.625 10 10Z" stroke="#FF80BF" stroke-opacity="0.8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g filter="url(#filter1_f)">
+<path d="M32.875 12.25C33 12.125 33 12.125 33.125 12.125H34.875C35 12.125 35 12.125 35.125 12.25C35.25 12.375 35.25 12.375 35.25 12.5V14.25C35.25 14.375 35.25 14.375 35.125 14.5C35 14.625 35 14.625 34.875 14.625H33.125C33 14.625 33 14.625 32.875 14.5C32.75 14.375 32.75 14.375 32.75 14.25V12.5C32.75 12.375 32.75 12.375 32.875 12.25Z" stroke="#FF80BF" stroke-opacity="0.8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g filter="url(#filter2_f)">
+<path d="M30.25 17.75H35.25V34.25C35.25 34.5 35.25 34.75 35 35C34.75 35.25 34.5 35.25 34.25 35.25H13.75C13.5 35.25 13.25 35.25 13 35C12.75 34.75 12.75 34.5 12.75 34.25V17.75H17.75" stroke="#FF80BF" stroke-opacity="0.8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g filter="url(#filter3_f)">
+<path d="M24 32.75C28.8325 32.75 32.75 28.8325 32.75 24C32.75 19.1675 28.8325 15.25 24 15.25C19.1675 15.25 15.25 19.1675 15.25 24C15.25 28.8325 19.1675 32.75 24 32.75Z" stroke="#FF80BF" stroke-opacity="0.8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g filter="url(#filter4_f)">
+<path d="M24.0625 29.75C27.2036 29.75 29.75 27.2036 29.75 24.0625C29.75 20.9214 27.2036 18.375 24.0625 18.375C20.9214 18.375 18.375 20.9214 18.375 24.0625C18.375 27.2036 20.9214 29.75 24.0625 29.75Z" stroke="#FF80BF" stroke-opacity="0.8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<path d="M10 10C10.625 9.375 11.5 9 12.75 9H35.25C36.5 9 37.375 9.375 38 10C38.625 10.625 39 11.5 39 12.75V35.25C39 36.5 38.625 37.375 38 38C37.375 38.625 36.5 39 35.25 39H12.75C11.5 39 10.625 38.625 10 38C9.375 37.375 9 36.5 9 35.25V12.75C9 11.5 9.375 10.625 10 10Z" stroke="#FF4CA6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M32.875 12.25C33 12.125 33 12.125 33.125 12.125H34.875C35 12.125 35 12.125 35.125 12.25C35.25 12.375 35.25 12.375 35.25 12.5V14.25C35.25 14.375 35.25 14.375 35.125 14.5C35 14.625 35 14.625 34.875 14.625H33.125C33 14.625 33 14.625 32.875 14.5C32.75 14.375 32.75 14.375 32.75 14.25V12.5C32.75 12.375 32.75 12.375 32.875 12.25Z" stroke="#FF4CA6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30.25 17.75H35.25V34.25C35.25 34.5 35.25 34.75 35 35C34.75 35.25 34.5 35.25 34.25 35.25H13.75C13.5 35.25 13.25 35.25 13 35C12.75 34.75 12.75 34.5 12.75 34.25V17.75H17.75" stroke="#FF4CA6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24 32.75C28.8325 32.75 32.75 28.8325 32.75 24C32.75 19.1675 28.8325 15.25 24 15.25C19.1675 15.25 15.25 19.1675 15.25 24C15.25 28.8325 19.1675 32.75 24 32.75Z" stroke="#FF4CA6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.0625 29.75C27.2036 29.75 29.75 27.2036 29.75 24.0625C29.75 20.9214 27.2036 18.375 24.0625 18.375C20.9214 18.375 18.375 20.9214 18.375 24.0625C18.375 27.2036 20.9214 29.75 24.0625 29.75Z" stroke="#FF4CA6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10 10C10.625 9.375 11.5 9 12.75 9H35.25C36.5 9 37.375 9.375 38 10C38.625 10.625 39 11.5 39 12.75V35.25C39 36.5 38.625 37.375 38 38C37.375 38.625 36.5 39 35.25 39H12.75C11.5 39 10.625 38.625 10 38C9.375 37.375 9 36.5 9 35.25V12.75C9 11.5 9.375 10.625 10 10Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M32.875 12.25C33 12.125 33 12.125 33.125 12.125H34.875C35 12.125 35 12.125 35.125 12.25C35.25 12.375 35.25 12.375 35.25 12.5V14.25C35.25 14.375 35.25 14.375 35.125 14.5C35 14.625 35 14.625 34.875 14.625H33.125C33 14.625 33 14.625 32.875 14.5C32.75 14.375 32.75 14.375 32.75 14.25V12.5C32.75 12.375 32.75 12.375 32.875 12.25Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30.25 17.75H35.25V34.25C35.25 34.5 35.25 34.75 35 35C34.75 35.25 34.5 35.25 34.25 35.25H13.75C13.5 35.25 13.25 35.25 13 35C12.75 34.75 12.75 34.5 12.75 34.25V17.75H17.75" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24 32.75C28.8325 32.75 32.75 28.8325 32.75 24C32.75 19.1675 28.8325 15.25 24 15.25C19.1675 15.25 15.25 19.1675 15.25 24C15.25 28.8325 19.1675 32.75 24 32.75Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.0625 29.75C27.2036 29.75 29.75 27.2036 29.75 24.0625C29.75 20.9214 27.2036 18.375 24.0625 18.375C20.9214 18.375 18.375 20.9214 18.375 24.0625C18.375 27.2036 20.9214 29.75 24.0625 29.75Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<defs>
+<filter id="filter0_f" x="0.6" y="0.6" width="46.8" height="46.8" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2.7" result="effect1_foregroundBlur"/>
+</filter>
+<filter id="filter1_f" x="24.35" y="3.725" width="19.3" height="19.3" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2.7" result="effect1_foregroundBlur"/>
+</filter>
+<filter id="filter2_f" x="4.34963" y="9.35" width="39.3008" height="34.3004" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2.7" result="effect1_foregroundBlur"/>
+</filter>
+<filter id="filter3_f" x="6.85" y="6.85" width="34.3" height="34.3" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2.7" result="effect1_foregroundBlur"/>
+</filter>
+<filter id="filter4_f" x="9.975" y="9.97502" width="28.175" height="28.175" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2.7" result="effect1_foregroundBlur"/>
+</filter>
+</defs>
+</svg>
