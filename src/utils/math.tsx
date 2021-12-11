@@ -1,23 +1,61 @@
-export function calcСalories(values: {
-  protein: number | null;
-  fat: number | null;
-  carb: number | null;
-  weight: number | null;
-}): number {
-  let result = 0;
+import { MealItem } from "../redux/types";
+import {
+  CalculatedValues,
+  ValidatedValues,
+  ValuesKey,
+  InputValues,
+} from "./types";
 
-  const isNull = Object.values(values).includes(null);
+export function prepareValues(inputValues: InputValues) {
+  const values = { ...inputValues };
 
-  if (isNull) {
-    return result;
+  for (let key in values) {
+    if (typeof values[key as ValuesKey] === "string") {
+      values[key as ValuesKey] = 0;
+    }
   }
 
+  return calcСalories(values as ValidatedValues);
+}
+
+export function calcСalories(values: CalculatedValues): number {
+  let result = 0;
+
   const weight = values.weight! / 100;
-  const ccalIn100Gr = values.protein! * 4 + values.fat! * 9 + values.carb! * 4;
+  const ccalIn100Gr = values.protein * 4 + values.fat! * 9 + values.carb! * 4;
 
   result = Math.round(ccalIn100Gr * weight);
 
   return result;
+}
+
+export function calcTotalParameters(meals: MealItem[], date: string) {
+  let mealsByDay = {} as Record<string, MealItem[]>;
+
+  let summCalories = 0;
+  let summProtein = 0;
+  let summFat = 0;
+  let summCarb = 0;
+  let summWeight = 0;
+
+  meals.forEach((meal) => {
+    summCalories = summCalories + meal.calories!;
+    summProtein = summProtein + Math.round(meal.protein!);
+    summFat = summFat + Math.round(meal.fat!);
+    summCarb = summCarb + Math.round(meal.carb!);
+    summWeight = summWeight + Math.round(meal.weight!);
+  });
+
+  mealsByDay = { ...mealsByDay, [date]: meals };
+
+  return {
+    mealsByDay,
+    summCalories,
+    summProtein,
+    summFat,
+    summCarb,
+    summWeight,
+  };
 }
 
 export function calcWordEnding(number: number) {

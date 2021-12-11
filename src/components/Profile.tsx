@@ -20,12 +20,12 @@ function Profile() {
 
   type initialValuesType = {
     name: string;
-    age: string;
-    stature: string;
-    weight: string;
-    sex: string;
-    activityLevel: string;
-    purpose: string;
+    age: number;
+    stature: number;
+    weight: number;
+    sex: number;
+    activityLevel: number;
+    purpose: number;
   };
 
   const formik = useFormik({
@@ -51,19 +51,13 @@ function Profile() {
   let baseMetabolism = 0;
 
   function calculateMetabolism() {
-    if (sex === "Женщина") {
+    if (sex === 12) {
       baseMetabolism = Math.round(
-        447.593 +
-          Number(weight) * 9.247 +
-          Number(stature) * 3.098 -
-          Number(age) * 4.33
+        447.593 + weight * 9.247 + stature * 3.098 - age * 4.33
       );
-    } else if (sex === "Мужчина") {
+    } else if (sex === 7) {
       baseMetabolism = Math.round(
-        88.362 +
-          Number(weight) * 13.397 +
-          Number(stature) * 4.799 -
-          Number(age) * 5.667
+        88.362 + weight * 13.397 + stature * 4.799 - age * 5.667
       );
     }
 
@@ -72,35 +66,55 @@ function Profile() {
 
   calculateMetabolism();
 
-  const activeMetabolism = Math.round(baseMetabolism * Number(activityLevel));
+  const activeMetabolism = Math.round(baseMetabolism * activityLevel);
 
-  const purposeMetabolism = Math.round(activeMetabolism * Number(purpose));
+  const purposeMetabolism = Math.round(activeMetabolism * purpose);
+
+  function calcPurposeMetabolism(ratio: number) {
+    if (Number.isNaN(activeMetabolism)) return "";
+
+    return Math.round(activeMetabolism * ratio);
+  }
 
   return (
     <ProfileContainer>
       <ProfileForm onSubmit={formik.handleSubmit}>
-        <Input formik={formik} value={name} name="name" placeholder="Имя" />
+        <Input
+          formik={formik}
+          value={name}
+          name="name"
+          placeholder="Имя"
+          type={"text"}
+        />
         <Title>
           Введите данные чтобы рассчитать дневную норму калорийности
         </Title>
         <Inputs>
-          <Input formik={formik} value={age} name="age" placeholder="Возраст" />
+          <Input
+            formik={formik}
+            value={age}
+            name="age"
+            placeholder="Возраст"
+            type={"number"}
+          />
           <Input
             formik={formik}
             value={stature}
             name="stature"
             placeholder="Рост в см"
+            type={"number"}
           />
           <Input
             formik={formik}
             value={weight}
             name="weight"
             placeholder="Вес в кг"
+            type={"number"}
           />
         </Inputs>
         <InputSelect
           formik={formik}
-          value={sex ?? ""}
+          value={!sex ? "" : optionsSex.find((o) => o.value === sex)!.text}
           options={optionsSex}
           name="sex"
           placeholder="Пол"
@@ -110,9 +124,7 @@ function Profile() {
           value={
             !activityLevel
               ? ""
-              : optionsActivity.find(
-                  (option) => option.value === activityLevel
-                )!.span
+              : optionsActivity.find((o) => o.value === activityLevel)!.span
           }
           options={optionsActivity}
           name="activityLevel"
@@ -123,7 +135,7 @@ function Profile() {
           value={
             !purpose
               ? ""
-              : optionsPurpose.find((option) => option.value === purpose)!.span
+              : optionsPurpose.find((o) => o.value === purpose)!.text
           }
           options={optionsPurpose}
           name="purpose"
@@ -138,19 +150,18 @@ function Profile() {
           <Result>{activeMetabolism}</Result>
           <ResultUnit>ккал</ResultUnit>
           <ResultTitle>Для быстрого ↓ веса:</ResultTitle>
-          <Result>{Math.round(activeMetabolism * 0.8)}</Result>
+          <Result>{calcPurposeMetabolism(0.8)}</Result>
           <ResultUnit>ккал</ResultUnit>
           <ResultTitle>Для снижения веса:</ResultTitle>
-          <Result>{Math.round(activeMetabolism * 0.9)}</Result>
+          <Result>{calcPurposeMetabolism(0.9)}</Result>
           <ResultUnit>ккал</ResultUnit>
           <ResultTitle>Для набора веса:</ResultTitle>
-          <Result>{Math.round(activeMetabolism * 1.1)}</Result>
+          <Result>{calcPurposeMetabolism(1.1)}</Result>
           <ResultUnit>ккал</ResultUnit>
           <ResultTitle>Для быстрого ↑ веса:</ResultTitle>
-          <Result>{Math.round(activeMetabolism * 1.2)}</Result>
+          <Result>{calcPurposeMetabolism(1.2)}</Result>
           <ResultUnit>ккал</ResultUnit>
         </Results>
-        6
         <SaveButton
           type="submit"
           aria-label="Добавить запись"

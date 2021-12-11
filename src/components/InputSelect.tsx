@@ -11,8 +11,8 @@ import {
 
 type PropsType = {
   formik: FormikValues;
-  value: string;
-  options: { value: string; span: string; text: string }[];
+  value: string | number;
+  options: { value: number; span: string; text: string }[];
   name: string;
   placeholder: string;
 };
@@ -23,7 +23,7 @@ function InputSelect({ formik, value, options, name, placeholder }: PropsType) {
 
   const [listOpened, setListOpened] = useState(false);
 
-  function handleSelect(evt: MouseEvent<HTMLButtonElement>, value: string) {
+  function handleSelect(evt: MouseEvent<HTMLButtonElement>, value: number) {
     evt.preventDefault();
 
     formik.setFieldValue(name, value);
@@ -181,6 +181,7 @@ const List = styled.div<{ opened: boolean }>`
 `;
 
 const ListItem = styled.button`
+  min-height: 50px;
   width: 100%;
   box-sizing: border-box;
   display: flex;

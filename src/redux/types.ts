@@ -1,21 +1,21 @@
 export interface MealItem {
   id: number;
-  protein: number | null;
-  fat: number | null;
-  carb: number | null;
-  weight: number | null;
+  protein: number;
+  fat: number;
+  carb: number;
+  weight: number;
   calories: number;
   date: string;
 }
 
 export interface Profile {
   name: string;
-  age: string;
-  stature: string;
-  weight: string;
-  sex: string;
-  activityLevel: string;
-  purpose: string;
+  age: number;
+  stature: number;
+  weight: number;
+  sex: number;
+  activityLevel: number;
+  purpose: number;
   baseMetabolism: number;
   purposeMetabolism: number;
 }

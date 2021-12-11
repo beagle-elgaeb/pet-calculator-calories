@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import { State } from "../redux/types";
 import { lightPurple, mediumPurple, purple, yellow } from "../styles/colors";
 import { HoverAnimation } from "../styles/patterns";
-import { optionsActivity, optionsPurpose } from "../utils/optionsLists";
+import {
+  optionsActivity,
+  optionsPurpose,
+  optionsSex,
+} from "../utils/optionsLists";
 
 function Menu({ onClose }: { onClose: () => void }) {
   const data = useSelector((state: State) => state.profile);
@@ -13,16 +17,17 @@ function Menu({ onClose }: { onClose: () => void }) {
     <MenuContainer>
       <ProfileData>
         <Name>{data.name}</Name>
-        <Parameter>{data.sex}</Parameter>
+        <Parameter>
+          {!data.sex ? "" : optionsSex.find((o) => o.value === data.sex)!.text}
+        </Parameter>
         <Parameter>
           {data.age} года, {data.stature} см, {data.weight} кг
         </Parameter>
         <Parameter>
           {!data.activityLevel
             ? ""
-            : optionsActivity.find(
-                (option) => option.value === data.activityLevel
-              )!.span}{" "}
+            : optionsActivity.find((o) => o.value === data.activityLevel)!
+                .span}{" "}
           уровень активности
         </Parameter>
         <Purpose>
@@ -30,12 +35,11 @@ function Menu({ onClose }: { onClose: () => void }) {
             Цель:{" "}
             {!data.purpose
               ? ""
-              : optionsPurpose.find((option) => option.value === data.purpose)!
-                  .text}
+              : optionsPurpose.find((o) => o.value === data.purpose)!.text}
           </Parameter>
-          <Calories>{data.purposeMetabolism} ккал</Calories>
         </Purpose>
       </ProfileData>
+      <Calories>{data.purposeMetabolism} ккал</Calories>
       <EditProfileButton to="/profile" onClick={onClose}>
         Редактировать личные данные
       </EditProfileButton>
@@ -69,7 +73,7 @@ const Name = styled.h2`
   font-weight: 600;
   color: ${yellow};
   text-shadow: 0 1px 1px ${purple};
-  margin: 0;
+  margin: 0 0 30px;
 `;
 
 const Parameter = styled.p`
@@ -88,14 +92,15 @@ const Purpose = styled.div`
   margin: 40px 0 0;
 `;
 
-const Calories = styled(Parameter)`
-  font-size: 24px;
-  line-height: 26px;
+const Calories = styled.p`
+  font-size: 34px;
+  line-height: 36px;
   font-weight: 600;
-  color: ${yellow};
-  text-shadow: 0 1px 1px ${purple};
+  color: ${lightPurple};
+  -webkit-text-stroke: 2px ${yellow};
+  text-shadow: 1px 2px 2px ${purple};
   align-self: center;
-  margin: 20px 0 0;
+  margin: 0;
 `;
 
 const EditProfileButton = styled(Link)`
@@ -112,7 +117,7 @@ const EditProfileButton = styled(Link)`
   line-height: 20px;
   color: ${purple};
   text-decoration: none;
-  margin: 60px 0;
+  margin: 0 0 60px;
 
   :hover {
     box-shadow: 0 0 5px 1px ${mediumPurple};

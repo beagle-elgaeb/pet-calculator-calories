@@ -1,5 +1,4 @@
 import styled from "@emotion/styled/macro";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   brightPurple,
@@ -9,41 +8,8 @@ import {
   yellow,
 } from "../styles/colors";
 import { HoverAnimation } from "../styles/patterns";
-import Menu from "./Menu";
 
-type PropsType = {
-  isOpen: boolean;
-  onClose: () => void;
-  onKeydown: (evt: KeyboardEvent) => void;
-};
-
-function MenuPopup({ isOpen, onClose, onKeydown }: PropsType) {
-  useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
-
-    document.addEventListener("keydown", onKeydown);
-    return () => document.removeEventListener("keydown", onKeydown);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
-
-  return (
-    <MenuPopupOverlay opened={isOpen} onClick={onClose}>
-      <MenuPopupContainer opened={isOpen} onClick={(e) => e.stopPropagation()}>
-        <Logo to="/" onClick={onClose}>
-          <LogoInside></LogoInside>
-        </Logo>
-        <Close onClick={onClose}></Close>
-        <Menu onClose={onClose} />
-      </MenuPopupContainer>
-    </MenuPopupOverlay>
-  );
-}
-
-export default MenuPopup;
-
-const MenuPopupOverlay = styled.div<{ opened: boolean }>`
+export const MenuPopupOverlay = styled.div<{ opened: boolean }>`
   height: 100vh;
   width: 100%;
   display: flex;
@@ -75,7 +41,7 @@ export const MenuPopupContainer = styled.div<{ opened: boolean }>`
   z-index: 10;
 `;
 
-const Logo = styled(Link)`
+export const Logo = styled(Link)`
   height: 19px;
   width: 22px;
   position: absolute;
@@ -97,7 +63,7 @@ const Logo = styled(Link)`
   ${HoverAnimation}
 `;
 
-const LogoInside = styled.div`
+export const LogoInside = styled.div`
   height: 19px;
   width: 19px;
   box-sizing: border-box;

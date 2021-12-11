@@ -9,34 +9,7 @@ import {
 } from "../styles/colors";
 import { Container, HoverAnimation } from "../styles/patterns";
 
-type PropsType = {
-  onMenuClick: () => void;
-  popupOpened: boolean;
-};
-
-function Header({ onMenuClick, popupOpened }: PropsType) {
-  return (
-    <HeaderContainer>
-      <Logo to="/" visible={popupOpened}>
-        <LogoInside></LogoInside>
-      </Logo>
-      <Center>
-        <Title>Минималистичный</Title>
-        <Title>калькулятор</Title>
-        <Title> калорий</Title>
-      </Center>
-      <MenuButton
-        type="button"
-        onClick={onMenuClick}
-        aria-label="Открыть меню"
-      ></MenuButton>
-    </HeaderContainer>
-  );
-}
-
-export default Header;
-
-const HeaderContainer = styled.header`
+export const HeaderContainer = styled.header`
   ${Container};
   display: flex;
   justify-content: space-between;
@@ -44,7 +17,7 @@ const HeaderContainer = styled.header`
   border-bottom: 1px solid ${yellow};
 `;
 
-const Logo = styled(Link)<{ visible: boolean }>`
+export const Logo = styled(Link)<{ visible: boolean }>`
   height: 19px;
   width: 22px;
   display: block;
@@ -64,7 +37,7 @@ const Logo = styled(Link)<{ visible: boolean }>`
   ${HoverAnimation}
 `;
 
-const LogoInside = styled.div`
+export const LogoInside = styled.div`
   height: 19px;
   width: 19px;
   box-sizing: border-box;
@@ -74,7 +47,7 @@ const LogoInside = styled.div`
   margin: auto;
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
   font-size: 20px;
   line-height: 22px;
   font-weight: 400;
@@ -83,9 +56,9 @@ const Title = styled.h1`
   margin: 0;
 `;
 
-const Center = styled.div``;
+export const Center = styled.div``;
 
-const MenuButton = styled.button`
+export const MenuButton = styled.button`
   height: 19px;
   width: 22px;
   background: linear-gradient(

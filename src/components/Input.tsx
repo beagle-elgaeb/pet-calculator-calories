@@ -1,15 +1,27 @@
 import styled from "@emotion/styled/macro";
 import { FormikValues } from "formik";
+import { KeyboardEvent } from "react";
 import { lightPurple, mediumPurple, purple, yellow } from "../styles/colors";
 
 type PropsType = {
   formik: FormikValues;
-  value: string;
+  value: string | number;
   name: string;
   placeholder: string;
+  type: string;
+  onKeyPress?: (evt: KeyboardEvent<HTMLInputElement>) => void;
+  onFocus?: () => void;
 };
 
-function Input({ formik, value, name, placeholder }: PropsType) {
+function Input({
+  formik,
+  value,
+  name,
+  placeholder,
+  type,
+  onKeyPress,
+  onFocus,
+}: PropsType) {
   const getError = (name: keyof typeof formik.values) =>
     formik.touched[name] ? formik.errors[name] : undefined;
 
@@ -18,13 +30,15 @@ function Input({ formik, value, name, placeholder }: PropsType) {
       <InputItem
         placeholder={placeholder.slice(1)}
         name={name}
-        type="text"
+        type={type}
         isValid={!getError(name)}
         value={value ?? ""}
-        onFocus={() => formik.setFieldValue(placeholder, "")}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
+        onFocus={onFocus}
+        onKeyPress={onKeyPress}
         autoComplete="off"
+        required
       />
       <Label fullness={!!value} isValid={!getError(name)}>
         {!!value ? `${placeholder}` : `${placeholder[0]}`}

@@ -1,10 +1,6 @@
 import * as Yup from "yup";
 
-const schema = Yup.number()
-  .nullable()
-  .max(100, "?")
-  .positive("?")
-  .required("?");
+const schema = Yup.number().max(100, "?").positive("?").required("?");
 
 export const mealsValidationSchema = Yup.object({
   protein: schema,
