@@ -1,3 +1,5 @@
+import { PayloadAction } from "@reduxjs/toolkit";
+
 export interface MealItem {
   id: number;
   protein: number;
@@ -24,3 +26,7 @@ export interface State {
   meals: MealItem[];
   profile: Profile;
 }
+
+export type PayloadAddMeal = PayloadAction<
+  Omit<MealItem, "id" | "date"> & { startWeight: number }
+>;

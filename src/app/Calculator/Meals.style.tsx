@@ -1,6 +1,6 @@
 import styled from "@emotion/styled/macro";
-import { brightPurple, darkYellow, mediumPurple } from "../styles/colors";
-import { HoverAnimation, Table } from "../styles/patterns";
+import { brightPurple, darkYellow, mediumPurple } from "../../styles/colors";
+import { HoverAnimation, Table } from "../../styles/patterns";
 
 export const MealsContainer = styled.div`
   margin: 0;

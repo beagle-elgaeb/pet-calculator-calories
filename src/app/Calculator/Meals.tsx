@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { remove } from "../redux/mealSlise";
-import { MealItem, State } from "../redux/types";
-import { calcTotalParameters } from "../utils/math";
+import { remove } from "../../redux/mealSlise";
+import { MealItem, State } from "../../redux/types";
+import { calcTotalParameters } from "../../utils/math";
+import { MealsProps } from "../../utils/types";
 import {
   DeleteButton,
   Meal,
@@ -12,7 +13,7 @@ import {
   Totals,
 } from "./Meals.style";
 
-function Meals({ date }: { date: string }) {
+function Meals({ date }: MealsProps) {
   const dispatch = useDispatch();
 
   const meals = useSelector((state: State) => state.meals);

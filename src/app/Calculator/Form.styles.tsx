@@ -1,6 +1,6 @@
 import styled from "@emotion/styled/macro";
-import { lightPurple, mediumPurple, purple } from "../styles/colors";
-import { HoverAnimation } from "../styles/patterns";
+import { lightPurple, mediumPurple, purple } from "../../styles/colors";
+import { HoverAnimation } from "../../styles/patterns";
 
 export const FormContainer = styled.form`
   width: 100%;
@@ -12,6 +12,19 @@ export const Title = styled.h2`
   font-weight: 300;
   text-align: start;
   margin: 0 0 15px;
+`;
+
+export const Text = styled.p`
+  align-self: center;
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 400;
+  margin: 0 0 15px;
+`;
+
+export const Flex = styled.div`
+  display: flex;
+  justify-content: start;
 `;
 
 export const Grid = styled.div`

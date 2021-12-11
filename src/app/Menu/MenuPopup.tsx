@@ -1,13 +1,13 @@
+import { useEventListener } from "../../utils/eventListener";
+import { MenuPopupProps } from "../../utils/types";
+import Logo from "../Logo";
+import Menu from "./Menu";
 import {
+  Buttons,
   Close,
-  Logo,
-  LogoInside,
   MenuPopupContainer,
   MenuPopupOverlay,
 } from "./MenuPopup.styles";
-import { useEventListener } from "../utils/eventListener";
-import { MenuPopupProps } from "../utils/types";
-import Menu from "../components/Menu";
 
 function MenuPopup({ isOpen, onClose, onKeydown }: MenuPopupProps) {
   useEventListener(isOpen, onKeydown, "keydown");
@@ -15,10 +15,11 @@ function MenuPopup({ isOpen, onClose, onKeydown }: MenuPopupProps) {
   return (
     <MenuPopupOverlay opened={isOpen} onClick={onClose}>
       <MenuPopupContainer opened={isOpen} onClick={(e) => e.stopPropagation()}>
-        <Logo to="/" onClick={onClose}>
-          <LogoInside></LogoInside>
-        </Logo>
-        <Close onClick={onClose}></Close>
+        <Buttons>
+          <Logo onClickHandle={onClose} />
+          <Close onClick={onClose}></Close>
+        </Buttons>
+
         <Menu onClose={onClose} />
       </MenuPopupContainer>
     </MenuPopupOverlay>

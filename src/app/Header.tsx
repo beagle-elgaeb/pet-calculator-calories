@@ -1,19 +1,11 @@
 import { HeaderProps } from "../utils/types";
-import {
-  Center,
-  HeaderContainer,
-  Logo,
-  LogoInside,
-  MenuButton,
-  Title,
-} from "./Header.styles";
+import { Center, HeaderContainer, MenuButton, Title } from "./Header.styles";
+import Logo from "./Logo";
 
 function Header({ onMenuClick, popupOpened }: HeaderProps) {
   return (
     <HeaderContainer>
-      <Logo to="/" visible={popupOpened}>
-        <LogoInside></LogoInside>
-      </Logo>
+      <Logo opened={popupOpened} />
       <Center>
         <Title>Минималистичный</Title>
         <Title>калькулятор</Title>

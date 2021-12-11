@@ -3,10 +3,11 @@ import {
   CalculatedValues,
   ValidatedValues,
   ValuesKey,
-  InputValues,
+  MealsInputValues,
+  ProfileInputValues,
 } from "./types";
 
-export function prepareValues(inputValues: InputValues) {
+export function prepareValues(inputValues: MealsInputValues) {
   const values = { ...inputValues };
 
   for (let key in values) {
@@ -21,7 +22,7 @@ export function prepareValues(inputValues: InputValues) {
 export function calcСalories(values: CalculatedValues): number {
   let result = 0;
 
-  const weight = values.weight! / 100;
+  const weight = values.weight! / values.startWeight!;
   const ccalIn100Gr = values.protein * 4 + values.fat! * 9 + values.carb! * 4;
 
   result = Math.round(ccalIn100Gr * weight);
@@ -58,24 +59,34 @@ export function calcTotalParameters(meals: MealItem[], date: string) {
   };
 }
 
-export function calcWordEnding(number: number) {
-  const str = String(number);
-  const penultimateNumber = Number(str[Number(str.length) - 2]);
-  const lastNumber = Number(str[Number(str.length) - 1]);
+export function calcMetabolism({
+  age,
+  stature,
+  weight,
+  sex,
+  activityLevel,
+  purpose,
+}: ProfileInputValues) {
+  let baseMetabolism = 0;
 
-  if (lastNumber === 1) {
-    if (!!penultimateNumber && penultimateNumber === 1) {
-      return "килокалорий";
-    } else {
-      return "килокалорию";
-    }
-  } else if (lastNumber === 2 || lastNumber === 3 || lastNumber === 4) {
-    if (!!penultimateNumber && penultimateNumber === 1) {
-      return "килокалорий";
-    } else {
-      return "килокалории";
-    }
-  } else {
-    return "килокалорий";
+  if (sex === 12) {
+    baseMetabolism = Math.round(
+      447.593 + weight * 9.247 + stature * 3.098 - age * 4.33
+    );
+  } else if (sex === 7) {
+    baseMetabolism = Math.round(
+      88.362 + weight * 13.397 + stature * 4.799 - age * 5.667
+    );
   }
+
+  const activeMetabolism = Math.round(baseMetabolism * activityLevel);
+  const purposeMetabolism = Math.round(activeMetabolism * purpose);
+
+  return { baseMetabolism, activeMetabolism, purposeMetabolism };
+}
+
+export function calcAllMetabolism(ratio: number, activeMetabolism: number) {
+  if (Number.isNaN(activeMetabolism)) return "";
+
+  return Math.round(activeMetabolism * ratio);
 }

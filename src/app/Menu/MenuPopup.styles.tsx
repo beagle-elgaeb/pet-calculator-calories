@@ -1,13 +1,6 @@
 import styled from "@emotion/styled/macro";
-import { Link } from "react-router-dom";
-import {
-  brightPurple,
-  darkYellow,
-  lightPurple,
-  purple,
-  yellow,
-} from "../styles/colors";
-import { HoverAnimation } from "../styles/patterns";
+import { darkYellow, lightPurple } from "../../styles/colors";
+import { HoverAnimation } from "../../styles/patterns";
 
 export const MenuPopupOverlay = styled.div<{ opened: boolean }>`
   height: 100vh;
@@ -41,44 +34,17 @@ export const MenuPopupContainer = styled.div<{ opened: boolean }>`
   z-index: 10;
 `;
 
-export const Logo = styled(Link)`
-  height: 19px;
-  width: 22px;
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  display: block;
-  background: ${yellow};
-  border: 2px solid ${purple};
-  border-top-left-radius: 6px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 6px;
-  transition: all 0.2s ease-out;
-
-  :hover {
-    margin: 2px 0 0 0;
-  }
-
-  ${HoverAnimation}
-`;
-
-export const LogoInside = styled.div`
-  height: 19px;
-  width: 19px;
+export const Buttons = styled.div`
+  width: calc(100% - 60px);
   box-sizing: border-box;
-  background: radial-gradient(circle, ${brightPurple} 0%, ${yellow} 50%);
-  border: 2px solid ${brightPurple};
-  border-radius: 99em;
-  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 30px 0 30px;
 `;
 
 export const Close = styled.button`
   height: 17px;
   width: 17px;
-  position: absolute;
-  top: 30px;
-  right: 30px;
   background: transparent;
   background: linear-gradient(
       45deg,

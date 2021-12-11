@@ -1,23 +1,32 @@
 import { useFormik } from "formik";
 import { KeyboardEvent, useMemo } from "react";
 import { useDispatch } from "react-redux";
-import Input from "../components/Input";
-import { addMeal } from "../redux/mealSlise";
-import { calcWordEnding, prepareValues } from "../utils/math";
-import { InputValues, ValidatedValues } from "../utils/types";
-import { mealsValidationSchema } from "../utils/validation";
-import { FormContainer, Grid, SaveButton, Title } from "./Form.styles";
+import Input from "../../components/Input";
+import { addMeal } from "../../redux/mealSlise";
+import { calcCaloriesEnding } from "../../utils/lingvo";
+import { prepareValues } from "../../utils/math";
+import { MealsInputValues, ValidatedValues } from "../../utils/types";
+import { mealsValidationSchema } from "../../utils/validation";
+import {
+  Flex,
+  FormContainer,
+  Grid,
+  SaveButton,
+  Text,
+  Title,
+} from "./Form.styles";
 
 function Form() {
   const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
+      startWeight: 100,
       protein: "",
       fat: "",
       carb: "",
       weight: 100,
-    } as InputValues,
+    } as MealsInputValues,
     validationSchema: mealsValidationSchema,
     onSubmit: (values, { resetForm }) => {
       dispatch(addMeal({ ...(values as ValidatedValues), calories }));
@@ -25,7 +34,7 @@ function Form() {
     },
   });
 
-  const { protein, fat, carb, weight } = formik.values;
+  const { startWeight, protein, fat, carb, weight } = formik.values;
 
   const calories = useMemo(() => prepareValues(formik.values), [formik.values]);
 
@@ -41,7 +50,21 @@ function Form() {
 
   return (
     <FormContainer onSubmit={formik.handleSubmit}>
-      <Title>БЖУ на 100 грамм:</Title>
+      <Flex>
+        <Text>БЖУ на</Text>
+        <Input
+          formik={formik}
+          value={startWeight}
+          name="startWeight"
+          placeholder="Граммы"
+          type={"number"}
+          onKeyPress={onKeyPress}
+          onFocus={() => formik.setFieldValue("startWeight", "")}
+          startWeight={true}
+        />
+        <Text>грамм</Text>
+      </Flex>
+
       <Grid>
         <Input
           formik={formik}
@@ -89,7 +112,7 @@ function Form() {
         {` Добавить ${
           calories === 0
             ? `немного килокалорий`
-            : `${calories} ${calcWordEnding(calories)}`
+            : `${calories} ${calcCaloriesEnding(calories)}`
         }`}
       </SaveButton>
     </FormContainer>

@@ -3,7 +3,17 @@ import { Profile } from "./types";
 
 export const mealSlise = createSlice({
   name: "profile",
-  initialState: {} as Profile,
+  initialState: {
+    name: "",
+    age: 0,
+    stature: 0,
+    weight: 0,
+    sex: 0,
+    activityLevel: 0,
+    purpose: 0,
+    baseMetabolism: 0,
+    purposeMetabolism: 0,
+  } as Profile,
   reducers: {
     loadStateProfile: (_, { payload }: PayloadAction<Profile>) => {
       return payload;

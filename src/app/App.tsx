@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Main from "./Main";
-import MenuPopup from "./MenuPopup";
-import Profile from "../components/Profile";
+import Calculator from "./Calculator/Calculator";
+import MenuPopup from "./Menu/MenuPopup";
+import Profile from "./Profile/Profile";
 import { useLoadFromStorage } from "../utils/localStorage";
 import { AppContainer } from "./App.styles";
 import Footer from "./Footer";
@@ -32,7 +32,7 @@ function App() {
       <Header onMenuClick={handleMenuClick} popupOpened={menuPopupOpen} />
       <Routes>
         <Route path="/">
-          <Route index element={<Main />} />
+          <Route index element={<Calculator />} />
           <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>

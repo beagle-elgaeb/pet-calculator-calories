@@ -1,6 +1,6 @@
 import styled from "@emotion/styled/macro";
-import { mediumPurple, purple, white, yellow } from "../styles/colors";
-import { Table } from "../styles/patterns";
+import { mediumPurple, purple, white, yellow } from "../../styles/colors";
+import { Table } from "../../styles/patterns";
 
 export const DaysContainer = styled.div`
   margin: 0;

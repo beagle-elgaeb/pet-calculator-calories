@@ -1,24 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { MealItem } from "./types";
-
-const names = [
-  "января",
-  "февраля",
-  "марта",
-  "апреля",
-  "мая",
-  "июня",
-  "июля",
-  "августа",
-  "сентября",
-  "октября",
-  "ноября",
-  "декабря",
-];
-
-function getMonth(date: Date) {
-  return names[date.getMonth()];
-}
+import { MealItem, PayloadAddMeal } from "./types";
+import { getMonth } from "./utils";
 
 export const mealSlise = createSlice({
   name: "meal",
@@ -27,17 +9,15 @@ export const mealSlise = createSlice({
     loadStateMeals: (_, { payload }: PayloadAction<MealItem[]>) => {
       return payload;
     },
-    addMeal: (
-      state,
-      { payload }: PayloadAction<Omit<MealItem, "id" | "date">>
-    ) => {
+    addMeal: (state, { payload }: PayloadAddMeal) => {
       const date = new Date(Date.now());
 
       state.unshift({
         id: Date.now(),
-        protein: Math.round(payload.protein! * payload.weight!) / 100,
-        fat: Math.round(payload.fat! * payload.weight!) / 100,
-        carb: Math.round(payload.carb! * payload.weight!) / 100,
+        protein:
+          Math.round(payload.protein! * payload.weight!) / payload.startWeight,
+        fat: Math.round(payload.fat! * payload.weight!) / payload.startWeight,
+        carb: Math.round(payload.carb! * payload.weight!) / payload.startWeight,
         weight: payload.weight,
         calories: payload.calories,
         date: `${date.getDate().toString()} ${getMonth(date)}`,

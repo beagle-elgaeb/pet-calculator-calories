@@ -1,32 +1,32 @@
-import styled from "@emotion/styled/macro";
-import { Container, HoverAnimation } from "../styles/patterns";
 import { useFormik } from "formik";
-import { profileValidationSchema } from "../utils/validation";
-import { lightPurple, mediumPurple, purple } from "../styles/colors";
-import { saveProfile } from "../redux/profileSlise";
 import { useDispatch, useSelector } from "react-redux";
-import Input from "./Input";
-import InputSelect from "./InputSelect";
+import Input from "../../components/Input";
+import InputSelect from "../../components/InputSelect";
+import { saveProfile } from "../../redux/profileSlise";
+import { State } from "../../redux/types";
+import { calcAllMetabolism, calcMetabolism } from "../../utils/math";
 import {
   optionsActivity,
   optionsPurpose,
   optionsSex,
-} from "../utils/optionsLists";
-import { State } from "../redux/types";
+} from "../../utils/optionsLists";
+import { ProfileInputValues } from "../../utils/types";
+import { profileValidationSchema } from "../../utils/validation";
+import {
+  Inputs,
+  ProfileContainer,
+  ProfileForm,
+  Result,
+  Results,
+  ResultTitle,
+  ResultUnit,
+  SaveButton,
+  Title,
+} from "./Profile.styles";
 
 function Profile() {
   const dispatch = useDispatch();
   const data = useSelector((state: State) => state.profile);
-
-  type initialValuesType = {
-    name: string;
-    age: number;
-    stature: number;
-    weight: number;
-    sex: number;
-    activityLevel: number;
-    purpose: number;
-  };
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -38,7 +38,7 @@ function Profile() {
       sex: data.sex,
       activityLevel: data.activityLevel,
       purpose: data.purpose,
-    } as initialValuesType,
+    } as ProfileInputValues,
     validationSchema: profileValidationSchema,
     onSubmit: (values) => {
       dispatch(saveProfile({ ...values, baseMetabolism, purposeMetabolism }));
@@ -48,33 +48,8 @@ function Profile() {
   const { name, age, stature, weight, sex, activityLevel, purpose } =
     formik.values;
 
-  let baseMetabolism = 0;
-
-  function calculateMetabolism() {
-    if (sex === 12) {
-      baseMetabolism = Math.round(
-        447.593 + weight * 9.247 + stature * 3.098 - age * 4.33
-      );
-    } else if (sex === 7) {
-      baseMetabolism = Math.round(
-        88.362 + weight * 13.397 + stature * 4.799 - age * 5.667
-      );
-    }
-
-    return baseMetabolism;
-  }
-
-  calculateMetabolism();
-
-  const activeMetabolism = Math.round(baseMetabolism * activityLevel);
-
-  const purposeMetabolism = Math.round(activeMetabolism * purpose);
-
-  function calcPurposeMetabolism(ratio: number) {
-    if (Number.isNaN(activeMetabolism)) return "";
-
-    return Math.round(activeMetabolism * ratio);
-  }
+  const { baseMetabolism, activeMetabolism, purposeMetabolism } =
+    calcMetabolism(formik.values);
 
   return (
     <ProfileContainer>
@@ -150,16 +125,16 @@ function Profile() {
           <Result>{activeMetabolism}</Result>
           <ResultUnit>ккал</ResultUnit>
           <ResultTitle>Для быстрого ↓ веса:</ResultTitle>
-          <Result>{calcPurposeMetabolism(0.8)}</Result>
+          <Result>{calcAllMetabolism(0.8, activeMetabolism)}</Result>
           <ResultUnit>ккал</ResultUnit>
           <ResultTitle>Для снижения веса:</ResultTitle>
-          <Result>{calcPurposeMetabolism(0.9)}</Result>
+          <Result>{calcAllMetabolism(0.9, activeMetabolism)}</Result>
           <ResultUnit>ккал</ResultUnit>
           <ResultTitle>Для набора веса:</ResultTitle>
-          <Result>{calcPurposeMetabolism(1.1)}</Result>
+          <Result>{calcAllMetabolism(1.1, activeMetabolism)}</Result>
           <ResultUnit>ккал</ResultUnit>
           <ResultTitle>Для быстрого ↑ веса:</ResultTitle>
-          <Result>{calcPurposeMetabolism(1.2)}</Result>
+          <Result>{calcAllMetabolism(1.2, activeMetabolism)}</Result>
           <ResultUnit>ккал</ResultUnit>
         </Results>
         <SaveButton
@@ -175,73 +150,3 @@ function Profile() {
 }
 
 export default Profile;
-
-const ProfileContainer = styled.main`
-  ${Container};
-  border-top: 1px solid ${mediumPurple};
-`;
-
-const ProfileForm = styled.form``;
-
-const Title = styled.h2`
-  font-size: 12px;
-  line-height: 14px;
-  font-weight: 300;
-  text-align: start;
-  margin: 15px 0;
-`;
-
-const Inputs = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin: 20px 0 0;
-`;
-
-const Results = styled.div`
-  display: grid;
-  grid-template-columns: 4fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  column-gap: 10px;
-  row-gap: 5px;
-  margin: 10px 0;
-`;
-
-const Result = styled.div`
-  font-size: 16px;
-  line-height: 18px;
-  font-weight: 600;
-  text-align: center;
-`;
-
-const ResultTitle = styled(Result)`
-  font-weight: 400;
-  text-align: right;
-`;
-
-const ResultUnit = styled(Result)`
-  font-size: 12px;
-  line-height: 14px;
-  font-weight: 200;
-  text-align: left;
-`;
-
-const SaveButton = styled.button<{ disabled: boolean }>`
-  height: 36px;
-  width: 100%;
-  box-sizing: border-box;
-  background: ${lightPurple};
-  border: 1px solid ${mediumPurple};
-  border-radius: 5px;
-  outline: none;
-  font-size: 18px;
-  line-height: 20px;
-  color: ${({ disabled }) => (disabled ? `${mediumPurple}` : `${purple}`)};
-  margin: 60px 0;
-
-  :hover {
-    box-shadow: 0 0 5px 1px ${mediumPurple};
-  }
-
-  ${HoverAnimation}
-`;
