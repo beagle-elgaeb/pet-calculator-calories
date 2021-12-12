@@ -11,19 +11,19 @@ export const Title = styled.h2`
   line-height: 20px;
   font-weight: 500;
   text-align: center;
-  margin: 0;
+  margin: 10px 0 0;
 `;
 
 export const Subtitlele = styled.h3`
   font-size: 16px;
   line-height: 18px;
   font-weight: 500;
-  margin: 10px 0;
+  margin: 30px 0;
 `;
 
 export const Text = styled.p`
   font-size: 14px;
   line-height: 16px;
   font-weight: 300;
-  margin: 5px 0;
+  margin: 7px 0;
 `;

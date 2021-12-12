@@ -1,7 +1,7 @@
 import styled from "@emotion/styled/macro";
-import { lightPurple, mediumPurple, purple, white } from "../../styles/colors";
+import { lightPurple, mediumPurple, purple } from "../../styles/colors";
 
-export const Graph = styled.div`
+export const InfographicsContainer = styled.div`
   display: grid;
   grid-template-columns: 4fr 1fr;
   align-items: center;

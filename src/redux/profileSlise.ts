@@ -5,9 +5,9 @@ export const mealSlise = createSlice({
   name: "profile",
   initialState: {
     name: "",
-    age: 0,
-    stature: 0,
-    weight: 0,
+    age: "",
+    stature: "",
+    weight: "",
     sex: 0,
     activityLevel: 0,
     target: 0,

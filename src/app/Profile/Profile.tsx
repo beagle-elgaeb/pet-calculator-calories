@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { KeyboardEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "../../components/Input";
 import InputSelect from "../../components/InputSelect";
@@ -48,8 +49,15 @@ function Profile() {
   const { name, age, stature, weight, sex, activityLevel, target } =
     formik.values;
 
-  const { baseMetabolism, activeMetabolism, targetMetabolism } =
-    calcMetabolism(formik.values);
+  const { baseMetabolism, activeMetabolism, targetMetabolism } = calcMetabolism(
+    formik.values
+  );
+
+  function onKeyPress(evt: KeyboardEvent<HTMLInputElement>) {
+    if (!/^[1-9]/.test(evt.key) || evt.currentTarget.value.length >= 4) {
+      evt.preventDefault();
+    }
+  }
 
   return (
     <ProfileContainer>
@@ -71,6 +79,7 @@ function Profile() {
             name="age"
             placeholder="Возраст"
             type={"number"}
+            onKeyPress={onKeyPress}
           />
           <Input
             formik={formik}
@@ -78,6 +87,7 @@ function Profile() {
             name="stature"
             placeholder="Рост в см"
             type={"number"}
+            onKeyPress={onKeyPress}
           />
           <Input
             formik={formik}
@@ -85,6 +95,7 @@ function Profile() {
             name="weight"
             placeholder="Вес в кг"
             type={"number"}
+            onKeyPress={onKeyPress}
           />
         </Inputs>
         <InputSelect
@@ -108,9 +119,7 @@ function Profile() {
         <InputSelect
           formik={formik}
           value={
-            !target
-              ? ""
-              : optionsTarget.find((o) => o.value === target)!.text
+            !target ? "" : optionsTarget.find((o) => o.value === target)!.text
           }
           options={optionsTarget}
           name="target"

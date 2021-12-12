@@ -23,7 +23,11 @@ import {
 function Menu({ onClose }: MenuProps) {
   const data = useSelector((state: State) => state.profile);
 
-  const bmi = Math.round(data.weight / ((data.stature / 100) ^ 2));
+  const age = typeof data.age === "string" ? 0 : data.age;
+  const stature = typeof data.stature === "string" ? 0 : data.stature;
+  const weight = typeof data.weight === "string" ? 0 : data.weight;
+
+  const bmi = Math.round(weight / ((stature / 100) ^ 2));
 
   let bmiText = "";
 
@@ -47,24 +51,31 @@ function Menu({ onClose }: MenuProps) {
     <MenuContainer>
       <ProfileData>
         <Name>{data.name}</Name>
-        <Parameter>
-          {!data.sex ? "" : optionsSex.find((o) => o.value === data.sex)!.text}
-        </Parameter>
-        <Parameter>
-          {data.age} {calcYearsEnding(data.age)}, {data.stature} см,{" "}
-          {data.weight} кг
-        </Parameter>
-        <Parameter>
-          {!data.activityLevel
-            ? ""
-            : optionsActivity.find((o) => o.value === data.activityLevel)!
-                .span}{" "}
-          уровень активности
-        </Parameter>
 
-        <Parameter>
-          ИМТ {bmi} ({bmiText})
-        </Parameter>
+        {Number.isFinite(data.age) ? (
+          <>
+            <Parameter>
+              {!data.sex
+                ? ""
+                : optionsSex.find((o) => o.value === data.sex)!.text}
+            </Parameter>
+            <Parameter>
+              {age} {calcYearsEnding(age)}, {stature} см, {weight} кг
+            </Parameter>
+            <Parameter>
+              {!data.activityLevel
+                ? ""
+                : optionsActivity.find((o) => o.value === data.activityLevel)!
+                    .span}{" "}
+              уровень активности
+            </Parameter>
+            <Parameter>
+              ИМТ {bmi} ({bmiText})
+            </Parameter>
+          </>
+        ) : (
+          <></>
+        )}
 
         <Target>
           <Parameter>

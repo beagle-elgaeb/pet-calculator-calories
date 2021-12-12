@@ -11,8 +11,10 @@ function Layout({
 }) {
   return (
     <>
-      <Header onMenuClick={handleMenuClick} popupOpened={menuPopupOpen} />
-      <Outlet />
+      <div>
+        <Header onMenuClick={handleMenuClick} popupOpened={menuPopupOpen} />
+        <Outlet />
+      </div>
       <Footer />
     </>
   );

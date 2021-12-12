@@ -12,9 +12,9 @@ export interface MealItem {
 
 export interface Profile {
   name: string;
-  age: number;
-  stature: number;
-  weight: number;
+  age: number | string;
+  stature: number | string;
+  weight: number | string;
   sex: number;
   activityLevel: number;
   target: number;

@@ -99,7 +99,6 @@ export const ErrorPattern = ({ isValid }: { isValid: boolean }) => css`
   line-height: 14px;
   color: ${yellow};
   padding: 0 10px;
-  z-index: 10;
 `;
 
 export const TablePattern = css`

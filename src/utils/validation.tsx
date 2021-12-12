@@ -11,10 +11,11 @@ export const mealsValidationSchema = Yup.object({
 });
 
 export const profileValidationSchema = Yup.object({
-  name: Yup.string().required("?").max(30, "Слишком длинное имя"),
-  age: Yup.string().required("?"),
-  stature: Yup.string().required("?"),
-  weight: Yup.string().required("?"),
-  sex: Yup.string().required("?"),
-  activityLevel: Yup.string().required("?"),
+  name: Yup.string().max(30, "Слишком длинное имя"),
+  age: Yup.number().required("?").max(120, "?"),
+  stature: Yup.number().required("?").min(30,"?").max(250, "?"),
+  weight: Yup.number().required("?").min(4,"?").max(170, "?"),
+  sex: Yup.number().required("?"),
+  activityLevel: Yup.number().required("?"),
+  target: Yup.number().required("?"),
 });

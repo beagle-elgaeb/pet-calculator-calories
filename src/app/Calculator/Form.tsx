@@ -41,10 +41,15 @@ function Form() {
   function onKeyPress(evt: KeyboardEvent<HTMLInputElement>) {
     if (
       evt.key === "-" ||
-      Number(evt.currentTarget.value) > 99.99 ||
-      (evt.currentTarget.value === "0" && /^[0]/.test(evt.key))
+      evt.key === "e" ||
+      (evt.currentTarget.value === "0" && /^[0]/.test(evt.key)) ||
+      evt.currentTarget.value.length >= 6
     ) {
       evt.preventDefault();
+    }
+
+    if (evt.currentTarget.value === "0" && /^[1-9]/.test(evt.key)) {
+      formik.setFieldValue(evt.currentTarget.name, "");
     }
   }
 
@@ -56,7 +61,7 @@ function Form() {
           formik={formik}
           value={startWeight}
           name="startWeight"
-          placeholder="Граммы"
+          placeholder="-Граммы"
           type={"number"}
           onKeyPress={onKeyPress}
           onFocus={() => formik.setFieldValue("startWeight", "")}
@@ -110,7 +115,7 @@ function Form() {
         disabled={!formik.isValid}
       >
         {` Добавить ${
-          calories === 0
+          calories === 0 || Number.isNaN(calories)
             ? `немного килокалорий`
             : `${calories} ${calcCaloriesEnding(calories)}`
         }`}

@@ -15,7 +15,7 @@ export const MenuPopupOverlay = styled.div<{ opened: boolean }>`
   opacity: ${({ opened }) => (opened ? "1" : "0")};
   background: rgba(63, 35, 166, 0.1);
   transition: all 0.3s ease-in;
-  z-index: ${({ opened }) => (opened ? "9" : "-1")};
+  z-index: ${({ opened }) => (opened ? "11" : "-1")};
 `;
 
 export const MenuPopupContainer = styled.div<{ opened: boolean }>`
@@ -27,11 +27,10 @@ export const MenuPopupContainer = styled.div<{ opened: boolean }>`
   right: ${({ opened }) => (opened ? "0" : "-500px")};
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   background: ${lightPurple};
   transition: all 0.3s ease-in;
-  z-index: 10;
+  z-index: 12;
 `;
 
 export const Buttons = styled.div`
@@ -39,7 +38,7 @@ export const Buttons = styled.div`
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  margin: 30px 30px 0 30px;
+  margin: 30px 30px 50px 30px;
 `;
 
 export const Close = styled.button`

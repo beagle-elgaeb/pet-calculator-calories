@@ -19,7 +19,6 @@ function MenuPopup({ isOpen, onClose, onKeydown }: MenuPopupProps) {
           <Logo onClickHandle={onClose} />
           <Close onClick={onClose}></Close>
         </Buttons>
-
         <Menu onClose={onClose} />
       </MenuPopupContainer>
     </MenuPopupOverlay>

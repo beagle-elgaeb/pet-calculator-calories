@@ -17,7 +17,7 @@ function Input({
   return (
     <InputContainer startWeight={startWeight}>
       <InputItem
-        placeholder={placeholder}
+        placeholder={placeholder.slice(1)}
         name={name}
         type={type}
         isValid={!getError(name)}

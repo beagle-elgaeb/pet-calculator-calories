@@ -4,7 +4,7 @@ import { lightPurple, mediumPurple, purple, yellow } from "../../styles/colors";
 import { HoverAnimation } from "../../styles/patterns";
 
 export const MenuContainer = styled.div`
-  height: calc(100vh - 97px);
+  height: calc(100vh - 90px);
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -60,7 +60,7 @@ export const Buttons = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin: 0 0 60px;
+  margin: 0 0 100px;
 `;
 
 export const Navigation = styled.div`
