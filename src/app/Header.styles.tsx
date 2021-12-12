@@ -1,9 +1,9 @@
 import styled from "@emotion/styled/macro";
 import { darkYellow, purple, white, yellow } from "../styles/colors";
-import { Container, HoverAnimation } from "../styles/patterns";
+import { ContainerPattern, HoverAnimation } from "../styles/patterns";
 
 export const HeaderContainer = styled.header`
-  ${Container};
+  ${ContainerPattern};
   display: flex;
   justify-content: space-between;
   align-items: flex-start;

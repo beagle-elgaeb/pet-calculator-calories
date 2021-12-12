@@ -1,8 +1,8 @@
 import styled from "@emotion/styled/macro";
 import { mediumPurple } from "../../styles/colors";
-import { Container } from "../../styles/patterns";
+import { ContainerPattern } from "../../styles/patterns";
 
 export const CalculatorContainer = styled.main`
-  ${Container};
+  ${ContainerPattern};
   border-top: 1px solid ${mediumPurple};
 `;

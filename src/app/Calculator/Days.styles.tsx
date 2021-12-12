@@ -1,6 +1,6 @@
 import styled from "@emotion/styled/macro";
 import { mediumPurple, purple, white, yellow } from "../../styles/colors";
-import { Table } from "../../styles/patterns";
+import { TablePattern } from "../../styles/patterns";
 
 export const DaysContainer = styled.div`
   margin: 0;
@@ -29,7 +29,7 @@ export const DayTitle = styled.h3`
 `;
 
 export const MealTitles = styled.div`
-  ${Table}
+  ${TablePattern}
   justify-items: center;
   margin: 0 0 15px;
 `;

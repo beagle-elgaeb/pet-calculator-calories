@@ -1,13 +1,13 @@
 import styled from "@emotion/styled/macro";
 import { brightPurple, darkYellow, mediumPurple } from "../../styles/colors";
-import { HoverAnimation, Table } from "../../styles/patterns";
+import { HoverAnimation, TablePattern } from "../../styles/patterns";
 
 export const MealsContainer = styled.div`
   margin: 0;
 `;
 
 export const Meal = styled.div`
-  ${Table}
+  ${TablePattern}
   justify-items: start;
   padding: 0 0 6px 0;
 
@@ -30,7 +30,7 @@ export const Parametr = styled.div`
 `;
 
 export const Totals = styled.div`
-  ${Table}
+  ${TablePattern}
   justify-items: center;
   padding: 15px 0 0;
 `;

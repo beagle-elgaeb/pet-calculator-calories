@@ -1,6 +1,6 @@
 import { useEventListener } from "../../utils/eventListener";
 import { MenuPopupProps } from "../../utils/types";
-import Logo from "../Logo";
+import Logo from "../../components/Logo";
 import Menu from "./Menu";
 import {
   Buttons,

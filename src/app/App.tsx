@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Calculator from "./Calculator/Calculator";
-import MenuPopup from "./Menu/MenuPopup";
-import Profile from "./Profile/Profile";
 import { useLoadFromStorage } from "../utils/localStorage";
 import { AppContainer } from "./App.styles";
-import Footer from "./Footer";
-import Header from "./Header";
+import Layout from "./AppLayout";
+import Calculator from "./Calculator/Calculator";
+import MenuPopup from "./Menu/MenuPopup";
+import NotFoundPage from "./NotFoundPage";
+import Profile from "./Profile/Profile";
 
 function App() {
   useLoadFromStorage();
@@ -29,14 +29,24 @@ function App() {
 
   return (
     <AppContainer scrollInactive={menuPopupOpen}>
-      <Header onMenuClick={handleMenuClick} popupOpened={menuPopupOpen} />
       <Routes>
-        <Route path="/">
-          <Route index element={<Calculator />} />
-          <Route path="profile" element={<Profile />} />
+        <Route
+          element={
+            <Layout
+              handleMenuClick={handleMenuClick}
+              menuPopupOpen={menuPopupOpen}
+            />
+          }
+        >
+          <Route path="/">
+            <Route index element={<Calculator />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
         </Route>
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Footer />
+
       <MenuPopup
         isOpen={menuPopupOpen}
         onClose={closeAllPopups}

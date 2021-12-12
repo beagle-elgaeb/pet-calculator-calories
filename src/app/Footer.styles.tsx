@@ -1,8 +1,8 @@
 import styled from "@emotion/styled/macro";
-import { Container, HoverAnimation } from "../styles/patterns";
+import { ContainerPattern, HoverAnimation } from "../styles/patterns";
 
 export const FooterContainer = styled.footer`
-  ${Container};
+  ${ContainerPattern};
 
   font-size: 14px;
   line-height: 16px;

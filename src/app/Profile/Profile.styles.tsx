@@ -1,9 +1,9 @@
 import styled from "@emotion/styled/macro";
 import { lightPurple, mediumPurple, purple } from "../../styles/colors";
-import { Container, HoverAnimation } from "../../styles/patterns";
+import { ContainerPattern, HoverAnimation } from "../../styles/patterns";
 
 export const ProfileContainer = styled.main`
-  ${Container};
+  ${ContainerPattern};
   border-top: 1px solid ${mediumPurple};
 `;
 
