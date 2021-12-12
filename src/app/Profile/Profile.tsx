@@ -7,7 +7,7 @@ import { State } from "../../redux/types";
 import { calcAllMetabolism, calcMetabolism } from "../../utils/math";
 import {
   optionsActivity,
-  optionsPurpose,
+  optionsTarget,
   optionsSex,
 } from "../../utils/optionsLists";
 import { ProfileInputValues } from "../../utils/types";
@@ -37,18 +37,18 @@ function Profile() {
       weight: data.weight,
       sex: data.sex,
       activityLevel: data.activityLevel,
-      purpose: data.purpose,
+      target: data.target,
     } as ProfileInputValues,
     validationSchema: profileValidationSchema,
     onSubmit: (values) => {
-      dispatch(saveProfile({ ...values, baseMetabolism, purposeMetabolism }));
+      dispatch(saveProfile({ ...values, baseMetabolism, targetMetabolism }));
     },
   });
 
-  const { name, age, stature, weight, sex, activityLevel, purpose } =
+  const { name, age, stature, weight, sex, activityLevel, target } =
     formik.values;
 
-  const { baseMetabolism, activeMetabolism, purposeMetabolism } =
+  const { baseMetabolism, activeMetabolism, targetMetabolism } =
     calcMetabolism(formik.values);
 
   return (
@@ -108,12 +108,12 @@ function Profile() {
         <InputSelect
           formik={formik}
           value={
-            !purpose
+            !target
               ? ""
-              : optionsPurpose.find((o) => o.value === purpose)!.text
+              : optionsTarget.find((o) => o.value === target)!.text
           }
-          options={optionsPurpose}
-          name="purpose"
+          options={optionsTarget}
+          name="target"
           placeholder="Цель"
         />
         <Title>Результаты рассчёта:</Title>

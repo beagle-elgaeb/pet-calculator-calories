@@ -1,5 +1,5 @@
 import styled from "@emotion/styled/macro";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { lightPurple, mediumPurple, purple, yellow } from "../../styles/colors";
 import { HoverAnimation } from "../../styles/patterns";
 
@@ -11,8 +11,7 @@ export const MenuContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 77px 0 0 0;
-  padding: 10px;
+  padding: 0 10px;
 `;
 
 export const ProfileData = styled.div`
@@ -38,7 +37,7 @@ export const Parameter = styled.p`
   margin: 10px 0 0 0;
 `;
 
-export const Purpose = styled.div`
+export const Target = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -57,6 +56,44 @@ export const Calories = styled.p`
   margin: 0;
 `;
 
+export const Buttons = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 60px;
+`;
+
+export const Navigation = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 10px 0;
+`;
+
+export const NavigationButton = styled(NavLink)`
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 16px;
+  color: ${purple};
+  text-decoration: none;
+  margin: 0 0 10px 0;
+
+  :hover {
+    box-shadow: 0 0 5px 1px ${mediumPurple};
+  }
+
+  &.active {
+    font-weight: 800;
+  }
+
+  ${HoverAnimation}
+`;
+
 export const EditProfileButton = styled(Link)`
   height: 36px;
   width: 100%;
@@ -71,7 +108,7 @@ export const EditProfileButton = styled(Link)`
   line-height: 20px;
   color: ${purple};
   text-decoration: none;
-  margin: 0 0 60px;
+  margin: 0;
 
   :hover {
     box-shadow: 0 0 5px 1px ${mediumPurple};

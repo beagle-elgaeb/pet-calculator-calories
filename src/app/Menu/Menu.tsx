@@ -3,18 +3,21 @@ import { State } from "../../redux/types";
 import { calcYearsEnding } from "../../utils/lingvo";
 import {
   optionsActivity,
-  optionsPurpose,
+  optionsTarget,
   optionsSex,
 } from "../../utils/optionsLists";
 import { MenuProps } from "../../utils/types";
 import {
+  Buttons,
   Calories,
   EditProfileButton,
   MenuContainer,
   Name,
+  Navigation,
+  NavigationButton,
   Parameter,
   ProfileData,
-  Purpose,
+  Target,
 } from "./Menu.styles";
 
 function Menu({ onClose }: MenuProps) {
@@ -63,19 +66,44 @@ function Menu({ onClose }: MenuProps) {
           ИМТ {bmi} ({bmiText})
         </Parameter>
 
-        <Purpose>
+        <Target>
           <Parameter>
             Цель:{" "}
-            {!data.purpose
+            {!data.target
               ? ""
-              : optionsPurpose.find((o) => o.value === data.purpose)!.text}
+              : optionsTarget.find((o) => o.value === data.target)!.text}
           </Parameter>
-        </Purpose>
+        </Target>
       </ProfileData>
-      <Calories>{data.purposeMetabolism} ккал</Calories>
-      <EditProfileButton to="/profile" onClick={onClose}>
-        Редактировать личные данные
-      </EditProfileButton>
+      <Calories>{data.targetMetabolism} ккал</Calories>
+      <Buttons>
+        <Navigation>
+          <NavigationButton
+            className={({ isActive }) => (isActive ? "active" : "")}
+            to="/"
+            onClick={onClose}
+          >
+            Калькулятор
+          </NavigationButton>
+          <NavigationButton
+            className={({ isActive }) => (isActive ? "active" : "")}
+            to="/profile"
+            onClick={onClose}
+          >
+            Профиль
+          </NavigationButton>
+          <NavigationButton
+            className={({ isActive }) => (isActive ? "active" : "")}
+            to="/about-project"
+            onClick={onClose}
+          >
+            О проекте
+          </NavigationButton>
+        </Navigation>
+        <EditProfileButton to="/profile" onClick={onClose}>
+          Редактировать личные данные
+        </EditProfileButton>
+      </Buttons>
     </MenuContainer>
   );
 }

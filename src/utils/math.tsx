@@ -65,7 +65,7 @@ export function calcMetabolism({
   weight,
   sex,
   activityLevel,
-  purpose,
+  target,
 }: ProfileInputValues) {
   let baseMetabolism = 0;
 
@@ -80,9 +80,9 @@ export function calcMetabolism({
   }
 
   const activeMetabolism = Math.round(baseMetabolism * activityLevel);
-  const purposeMetabolism = Math.round(activeMetabolism * purpose);
+  const targetMetabolism = Math.round(activeMetabolism * target);
 
-  return { baseMetabolism, activeMetabolism, purposeMetabolism };
+  return { baseMetabolism, activeMetabolism, targetMetabolism };
 }
 
 export function calcAllMetabolism(ratio: number, activeMetabolism: number) {

@@ -11,7 +11,7 @@ export const Day = styled.div`
   border: 1px solid ${mediumPurple};
   border-radius: 5px;
   margin: 20px 0;
-  padding: 30px 10px;
+  padding: 30px 10px 20px;
 `;
 
 export const DayTitle = styled.h3`

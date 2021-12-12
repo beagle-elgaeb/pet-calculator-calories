@@ -3,6 +3,7 @@ import { remove } from "../../redux/mealSlise";
 import { MealItem, State } from "../../redux/types";
 import { calcTotalParameters } from "../../utils/math";
 import { MealsProps } from "../../utils/types";
+import Infographics from "./Infographics";
 import {
   DeleteButton,
   Meal,
@@ -58,6 +59,7 @@ function Meals({ date }: MealsProps) {
         <Total>{summCarb}</Total>
         <TotalCalories>{summCalories}</TotalCalories>
       </Totals>
+      <Infographics summCalories={summCalories} />
     </>
   );
 }

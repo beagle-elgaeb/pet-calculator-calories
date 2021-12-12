@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useLoadFromStorage } from "../utils/localStorage";
+import AboutProject from "./AboutProject/AboutProject";
 import { AppContainer } from "./App.styles";
 import Layout from "./AppLayout";
 import Calculator from "./Calculator/Calculator";
@@ -41,6 +42,7 @@ function App() {
           <Route path="/">
             <Route index element={<Calculator />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="about-project" element={<AboutProject />} />
           </Route>
         </Route>
 

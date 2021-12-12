@@ -17,9 +17,9 @@ export interface Profile {
   weight: number;
   sex: number;
   activityLevel: number;
-  purpose: number;
+  target: number;
   baseMetabolism: number;
-  purposeMetabolism: number;
+  targetMetabolism: number;
 }
 
 export interface State {

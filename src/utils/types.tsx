@@ -74,5 +74,5 @@ export type ProfileInputValues = {
   weight: number;
   sex: number;
   activityLevel: number;
-  purpose: number;
+  target: number;
 };

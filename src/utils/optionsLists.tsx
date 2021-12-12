@@ -54,7 +54,7 @@ export const optionsActivity = [
   },
 ];
 
-export const optionsPurpose = [
+export const optionsTarget = [
   {
     value: 0.8,
     span: "",
