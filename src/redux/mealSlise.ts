@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MealItem, PayloadAddMeal } from "./types";
-import { getMonth } from "./utils";
 
 export const mealSlise = createSlice({
   name: "meal",
@@ -10,8 +9,6 @@ export const mealSlise = createSlice({
       return payload;
     },
     addMeal: (state, { payload }: PayloadAddMeal) => {
-      const date = new Date(Date.now());
-
       state.unshift({
         id: Date.now(),
         protein:
@@ -20,7 +17,7 @@ export const mealSlise = createSlice({
         carb: Math.round(payload.carb! * payload.weight!) / payload.startWeight,
         weight: payload.weight,
         calories: payload.calories,
-        date: `${date.getDate().toString()} ${getMonth(date)}`,
+        timestamp: Date.now(),
       });
     },
     remove: (state, { payload }: PayloadAction<{ id: number }>) => {

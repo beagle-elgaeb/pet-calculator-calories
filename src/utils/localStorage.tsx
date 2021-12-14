@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { loadStateHistory } from "../redux/historySlise";
 import { loadStateMeals } from "../redux/mealSlise";
 import { loadStateProfile } from "../redux/profileSlise";
 import { State } from "../redux/types";
@@ -12,8 +13,15 @@ export function useLoadFromStorage() {
 
   // Загрузка данных из локального хранилища в стейт
   useEffect(() => {
+    const savedStateHistory = localStorage.getItem(localStorageKey);
     const savedStateMeals = localStorage.getItem(localStorageKey);
     const savedStateProfile = localStorage.getItem(localStorageKey);
+
+    if (savedStateHistory) {
+      try {
+        dispatch(loadStateHistory(JSON.parse(savedStateHistory).history));
+      } catch {}
+    }
 
     if (savedStateMeals) {
       try {

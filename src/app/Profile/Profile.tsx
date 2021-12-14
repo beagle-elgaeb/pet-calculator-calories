@@ -3,13 +3,14 @@ import { KeyboardEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "../../components/Input";
 import InputSelect from "../../components/InputSelect";
+import { addHistory } from "../../redux/historySlise";
 import { saveProfile } from "../../redux/profileSlise";
 import { State } from "../../redux/types";
 import { calcAllMetabolism, calcMetabolism } from "../../utils/math";
 import {
   optionsActivity,
-  optionsTarget,
   optionsSex,
+  optionsTarget,
 } from "../../utils/optionsLists";
 import { ProfileInputValues } from "../../utils/types";
 import { profileValidationSchema } from "../../utils/validation";
@@ -43,6 +44,7 @@ function Profile() {
     validationSchema: profileValidationSchema,
     onSubmit: (values) => {
       dispatch(saveProfile({ ...values, baseMetabolism, targetMetabolism }));
+      dispatch(addHistory({ targetMetabolism }));
     },
   });
 

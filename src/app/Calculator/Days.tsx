@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { State } from "../../redux/types";
+import { formatDate } from "../../utils/lingvo";
 import {
   Day,
   DaysContainer,
@@ -11,7 +12,9 @@ import Meals from "./Meals";
 
 function Days() {
   const meals = useSelector((state: State) => state.meals);
-  const dates = Array.from(new Set(meals.map((meal) => meal.date)));
+  const dates = Array.from(
+    new Set(meals.map((meal) => formatDate(meal.timestamp)))
+  );
 
   return (
     <DaysContainer>

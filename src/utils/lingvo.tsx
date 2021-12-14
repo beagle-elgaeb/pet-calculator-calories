@@ -41,3 +41,27 @@ export function calcYearsEnding(number: number) {
     return "лет";
   }
 }
+
+const names = [
+  "января",
+  "февраля",
+  "марта",
+  "апреля",
+  "мая",
+  "июня",
+  "июля",
+  "августа",
+  "сентября",
+  "октября",
+  "ноября",
+  "декабря",
+];
+
+function getMonth(date: Date) {
+  return names[date.getMonth()];
+}
+
+export function formatDate(timestamp: number) {
+  const date = new Date(timestamp);
+  return `${date.getDate().toString()} ${getMonth(date)}`;
+}

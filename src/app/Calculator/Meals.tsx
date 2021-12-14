@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { remove } from "../../redux/mealSlise";
 import { MealItem, State } from "../../redux/types";
+import { formatDate } from "../../utils/lingvo";
 import { calcTotalParameters } from "../../utils/math";
 import { MealsProps } from "../../utils/types";
 import Infographics from "./Infographics";
@@ -18,7 +19,10 @@ function Meals({ date }: MealsProps) {
   const dispatch = useDispatch();
 
   const meals = useSelector((state: State) => state.meals);
-  const mealsInDay = meals.filter((meal) => meal.date === date);
+
+  const mealsInDay = meals.filter(
+    (meal) => formatDate(meal.timestamp) === date
+  );
 
   const {
     mealsByDay,
@@ -59,7 +63,7 @@ function Meals({ date }: MealsProps) {
         <Total>{summCarb}</Total>
         <TotalCalories>{summCalories}</TotalCalories>
       </Totals>
-      <Infographics summCalories={summCalories} />
+      <Infographics summCalories={summCalories} date={date} />
     </>
   );
 }

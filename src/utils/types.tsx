@@ -12,6 +12,11 @@ export type MealsProps = {
   date: string;
 };
 
+export type InfographicsProps = {
+  summCalories: number;
+  date: string;
+};
+
 export type MenuPopupProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -35,7 +40,7 @@ export type InputProps = {
   type: string;
   onKeyPress?: (evt: ReactKeyboardEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
-  startWeight?: boolean
+  startWeight?: boolean;
 };
 
 export type InputSelectPropsType = {
