@@ -1,16 +1,14 @@
 import styled from "@emotion/styled/macro";
 import cross from "../../icons/cross.svg";
-import { lightPurple, purpleTransparent } from "../../styles/colors";
+import { purpleTransparent, white } from "../../styles/colors";
 import { HoverAnimation } from "../../styles/patterns";
 
-export const MenuPopupOverlay = styled.div<{ opened: boolean }>`
+export const MealPopupOverlay = styled.div<{ opened: boolean }>`
   height: 100vh;
   width: 100%;
-  display: flex;
-  justify-content: end;
-  position: absolute;
+  position: fixed;
   top: 0;
-  right: 0;
+  left: 0;
   overflow: hidden;
   visibility: ${({ opened }) => (opened ? "visible" : "hidden")};
   opacity: ${({ opened }) => (opened ? "1" : "0")};
@@ -19,27 +17,17 @@ export const MenuPopupOverlay = styled.div<{ opened: boolean }>`
   z-index: ${({ opened }) => (opened ? "11" : "-1")};
 `;
 
-export const MenuPopupContainer = styled.div<{ opened: boolean }>`
-  height: 100vh;
-  width: 95%;
-  max-width: 350px;
+export const MealPopupContainer = styled.div<{ opened: boolean }>`
+  width: 90%;
   position: absolute;
-  top: 0;
-  right: ${({ opened }) => (opened ? "0" : "-500px")};
+  top: 100px;
+  left: 5%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background: ${lightPurple};
+  background: ${white};
+  border-radius: 10px;
   transition: all 0.3s ease-in;
   z-index: 12;
-`;
-
-export const Buttons = styled.div`
-  width: calc(100% - 60px);
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  margin: 30px 30px 50px 30px;
 `;
 
 export const Close = styled.button`
@@ -49,8 +37,8 @@ export const Close = styled.button`
   background-size: contain;
   border: none;
   border-radius: 2px;
-
   outline: none;
+  margin: 30px 30px 30px auto;
 
   :hover {
     transform: rotate(10deg);

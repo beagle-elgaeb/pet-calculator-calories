@@ -32,11 +32,11 @@ function Input({
       />
 
       <Label
-        fullness={!!value}
+        fullness={!!value || value === 0}
         isValid={!getError(name)}
         startWeight={startWeight}
       >
-        {!!value ? `${placeholder}` : `${placeholder[0]}`}
+        {!!value || value === 0 ? `${placeholder}` : `${placeholder[0]}`}
       </Label>
 
       <Error isValid={!getError(name)}>{getError(name)}</Error>

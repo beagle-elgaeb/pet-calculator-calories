@@ -3,12 +3,12 @@ import { mediumPurple, purple, white } from "../styles/colors";
 import {
   ErrorPattern,
   InputPattern,
-  InputSelectPattern,
+  InputContainerPattern,
   LabelPattern,
 } from "../styles/patterns";
 
 export const InputSelectContainer = styled.div`
-  ${InputSelectPattern}
+  ${InputContainerPattern}
 `;
 
 export const InputItem = styled.input<{ isValid: boolean; opened: boolean }>`

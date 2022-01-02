@@ -11,9 +11,9 @@ export const HeaderContainer = styled.header`
 `;
 
 export const Title = styled.h1`
-  font-size: 20px;
-  line-height: 22px;
-  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 300;
   color: ${yellow};
   text-shadow: 0 1px 1px ${purple};
   margin: 0;
@@ -42,7 +42,19 @@ export const MenuButton = styled.button`
   margin: 0;
 
   :hover {
-    margin: 2px 0 0 0;
+    background: linear-gradient(
+      180deg,
+      ${purple} 0,
+      ${purple} 3px,
+      ${white} 3px,
+      ${white} 8px,
+      ${darkYellow} 8px,
+      ${darkYellow} 11px,
+      ${white} 11px,
+      ${white} 16px,
+      ${purple} 16px,
+      ${purple} 19px
+    );
   }
 
   ${HoverAnimation}

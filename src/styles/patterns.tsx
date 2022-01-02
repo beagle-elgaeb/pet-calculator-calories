@@ -7,7 +7,7 @@ export const ContainerPattern = css`
   padding: 20px 0;
 `;
 
-export const InputSelectPattern = ({
+export const InputContainerPattern = ({
   startWeight,
 }: {
   startWeight?: boolean;
@@ -82,8 +82,9 @@ export const LabelPattern = ({
   display: ${startWeight ? "none" : "inline"};
   background: ${lightPurple};
   border-top: ${fullness ? (isValid ? "none" : `1px solid ${yellow}`) : "none"};
-  font-size: ${fullness ? "10px" : "20px"};
+  font-size: ${fullness ? "12px" : "20px"};
   line-height: ${fullness ? "12px" : "22px"};
+  font-weight: 400;
   text-align: right;
   margin: 0;
   padding: ${fullness ? "0 10px" : "0"};

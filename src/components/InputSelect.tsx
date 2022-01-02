@@ -58,7 +58,6 @@ function InputSelect({
         isValid={!getError(name)}
         value={value}
         onFocus={() => {
-          formik.setFieldValue(placeholder, "");
           setListOpened(true);
         }}
         onChange={formik.handleChange}

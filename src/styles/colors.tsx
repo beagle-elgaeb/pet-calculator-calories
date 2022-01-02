@@ -1,8 +1,8 @@
-export const yellow = "#f3c700"; //       рамка ошибочного инпута, ошибка, рамка ошибки, заголовок хедера
+export const yellow = "#f3c700";
 export const darkYellow = "#9E8100";
 export const brightPurple = "#9D4DD0";
 export const white = "#ffffff";
-export const lightPurple = "#fcfbff"; //  фон инпута, фон ошибки, фон кнопки добавления
-export const mediumPurple = "#d9cfff"; // плейсхолдеры, текст неактивной кнопки,
-export const purple = "#3f23a6"; //       лейбл инпута, вводимый текст в инпуте, тень заголовка хедера,
-//                                          текст активной кнопки
+export const lightPurple = "#fcfbff";
+export const mediumPurple = "#d9cfff";
+export const purple = "#3f23a6";
+export const purpleTransparent = "#3f23a619";

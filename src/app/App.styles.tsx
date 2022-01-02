@@ -2,15 +2,12 @@ import styled from "@emotion/styled/macro";
 import { purple } from "../styles/colors";
 import { ContainerPattern } from "../styles/patterns";
 
-export const AppContainer = styled.div<{ scrollInactive: boolean }>`
+export const AppContainer = styled.div`
   ${ContainerPattern};
-
-  ${({ scrollInactive }) => (scrollInactive ? `height: 100vh;` : "")}
-  ${({ scrollInactive }) => (scrollInactive ? `overflow-y: hidden;` : "")}
 
   min-height: 100vh;
   max-width: 500px;
-  min-width: 320px;
+  min-width: 315px;
   position: relative;
   display: flex;
   flex-direction: column;

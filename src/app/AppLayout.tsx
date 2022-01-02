@@ -1,14 +1,9 @@
 import { Outlet } from "react-router-dom";
+import { AppLayoutProps } from "../utils/types";
 import Footer from "./Footer";
 import Header from "./Header";
 
-function Layout({
-  handleMenuClick,
-  menuPopupOpen,
-}: {
-  handleMenuClick: () => void;
-  menuPopupOpen: boolean;
-}) {
+function Layout({ handleMenuClick, menuPopupOpen }: AppLayoutProps) {
   return (
     <>
       <div>

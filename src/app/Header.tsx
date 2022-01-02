@@ -1,6 +1,6 @@
+import Logo from "../components/Logo";
 import { HeaderProps } from "../utils/types";
 import { Center, HeaderContainer, MenuButton, Title } from "./Header.styles";
-import Logo from "../components/Logo";
 
 function Header({ onMenuClick, popupOpened }: HeaderProps) {
   return (

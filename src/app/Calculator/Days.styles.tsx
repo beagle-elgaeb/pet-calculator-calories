@@ -1,6 +1,5 @@
 import styled from "@emotion/styled/macro";
 import { mediumPurple, purple, white, yellow } from "../../styles/colors";
-import { TablePattern } from "../../styles/patterns";
 
 export const DaysContainer = styled.div`
   margin: 0;
@@ -26,21 +25,4 @@ export const DayTitle = styled.h3`
   text-shadow: 0 1px 1px ${purple};
   margin: 0;
   padding: 0 10px;
-`;
-
-export const MealTitles = styled.div`
-  ${TablePattern}
-  justify-items: center;
-  margin: 0 0 15px;
-`;
-
-export const SubTitle = styled.div`
-  width: 100%;
-  border-right: 1px solid ${mediumPurple};
-  font-weight: 600;
-  margin: 0;
-
-  :last-child {
-    border-right: none;
-  }
 `;

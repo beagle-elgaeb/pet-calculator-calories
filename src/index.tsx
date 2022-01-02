@@ -1,4 +1,7 @@
-import "@fontsource/inter/cyrillic.css";
+import "@fontsource/ibm-plex-sans/cyrillic.css";
+import "@fontsource/ibm-plex-sans/cyrillic-ext.css";
+import "@fontsource/ibm-plex-sans/latin.css";
+import "@fontsource/ibm-plex-sans/latin-ext.css";
 import "normalize.css";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";

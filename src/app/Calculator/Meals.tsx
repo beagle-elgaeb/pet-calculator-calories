@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { remove } from "../../redux/mealSlise";
 import { MealItem, State } from "../../redux/types";
@@ -8,20 +9,26 @@ import Infographics from "./Infographics";
 import {
   DeleteButton,
   Meal,
+  MealName,
   MealsContainer,
-  Parametr,
+  OpenDataButton,
+  OpenDataButtonIcon,
+  Subtitle,
   Total,
   TotalCalories,
   Totals,
+  TotalsSubtitle,
 } from "./Meals.style";
 
-function Meals({ date }: MealsProps) {
+function Meals({ date, handleMealClick }: MealsProps) {
   const dispatch = useDispatch();
+
+  const [openData, setOpenData] = useState(false);
 
   const meals = useSelector((state: State) => state.meals);
 
   const mealsInDay = meals.filter(
-    (meal) => formatDate(meal.timestamp) === date
+    (meal) => formatDate(meal.timestamp) === formatDate(date)
   );
 
   const {
@@ -39,31 +46,50 @@ function Meals({ date }: MealsProps) {
 
   return (
     <>
-      <MealsContainer>
-        {mealsByDay[date].map((meal, i) => (
-          <Meal key={i}>
-            <Parametr>
-              <DeleteButton
-                type="button"
-                onClick={() => handleRemoveMeal(meal)}
-                aria-label="Удалить приём пищи"
-              ></DeleteButton>
-            </Parametr>
-            <Parametr>{meal.protein}</Parametr>
-            <Parametr>{meal.fat}</Parametr>
-            <Parametr>{meal.carb}</Parametr>
-            <Parametr>{meal.calories}</Parametr>
-          </Meal>
-        ))}
-      </MealsContainer>
-      <Totals>
-        <Total>{summWeight} г.</Total>
-        <Total>{summProtein}</Total>
-        <Total>{summFat}</Total>
-        <Total>{summCarb}</Total>
-        <TotalCalories>{summCalories}</TotalCalories>
-      </Totals>
-      <Infographics summCalories={summCalories} date={date} />
+      <OpenDataButton type="button" onClick={() => setOpenData(!openData)}>
+        <OpenDataButtonIcon openData={openData}></OpenDataButtonIcon>
+        {openData ? "Свернуть" : "Подробнее"}
+      </OpenDataButton>
+      {openData ? (
+        <>
+          <MealsContainer>
+            {mealsByDay[date].map((meal, i) => (
+              <Meal key={i}>
+                <MealName onClick={() => handleMealClick(meal)}>
+                  {meal.name} ({meal.weight} г.)
+                </MealName>
+                <DeleteButton
+                  type="button"
+                  onClick={() => handleRemoveMeal(meal)}
+                  aria-label="Удалить приём пищи"
+                ></DeleteButton>
+              </Meal>
+            ))}
+          </MealsContainer>
+          <TotalsSubtitle>
+            <Subtitle>вес</Subtitle>
+            <Subtitle>белки</Subtitle>
+            <Subtitle>жиры</Subtitle>
+            <Subtitle>угл-ды</Subtitle>
+            <Subtitle>ккал</Subtitle>
+          </TotalsSubtitle>
+          <Totals>
+            <Total>{summWeight} г.</Total>
+            <Total>{summProtein} г.</Total>
+            <Total>{summFat} г.</Total>
+            <Total>{summCarb} г.</Total>
+            <TotalCalories>{summCalories}</TotalCalories>
+          </Totals>
+        </>
+      ) : null}
+
+      <Infographics
+        summCalories={summCalories}
+        summProtein={summProtein}
+        summFat={summFat}
+        summCarb={summCarb}
+        date={date}
+      />
     </>
   );
 }

@@ -18,14 +18,14 @@ export const Error = styled.div``;
 export const ErrorMessage = styled.p`
   font-size: 18px;
   line-height: 20px;
-  font-weight: 300;
+  font-weight: 400;
   margin: 0;
 `;
 
 export const ErrorCode = styled.p`
   font-size: 48px;
   line-height: 50px;
-  font-weight: 500;
+  font-weight: 600;
   margin: 20px 0 0;
 `;
 

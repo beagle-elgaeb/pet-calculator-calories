@@ -13,25 +13,23 @@ export function useLoadFromStorage() {
 
   // Загрузка данных из локального хранилища в стейт
   useEffect(() => {
-    const savedStateHistory = localStorage.getItem(localStorageKey);
-    const savedStateMeals = localStorage.getItem(localStorageKey);
-    const savedStateProfile = localStorage.getItem(localStorageKey);
+    const savedState = localStorage.getItem(localStorageKey);
 
-    if (savedStateHistory) {
+    if (savedState) {
       try {
-        dispatch(loadStateHistory(JSON.parse(savedStateHistory).history));
+        dispatch(loadStateHistory(JSON.parse(savedState).history));
       } catch {}
     }
 
-    if (savedStateMeals) {
+    if (savedState) {
       try {
-        dispatch(loadStateMeals(JSON.parse(savedStateMeals).meals));
+        dispatch(loadStateMeals(JSON.parse(savedState).meals));
       } catch {}
     }
 
-    if (savedStateProfile) {
+    if (savedState) {
       try {
-        dispatch(loadStateProfile(JSON.parse(savedStateProfile).profile));
+        dispatch(loadStateProfile(JSON.parse(savedState).profile));
       } catch {}
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -2,12 +2,13 @@ import { PayloadAction } from "@reduxjs/toolkit";
 
 export interface History {
   id: number;
-  timestamp: number
+  timestamp: number;
   targetMetabolism: number;
 }
 
 export interface MealItem {
   id: number;
+  name: string;
   protein: number;
   fat: number;
   carb: number;
@@ -34,8 +35,19 @@ export interface State {
   profile: Profile;
 }
 
-export type PayloadAddHistory = PayloadAction<Omit<History, "id" | "timestamp">>;
+export type PayloadAddHistory = PayloadAction<
+  Omit<History, "id" | "timestamp">
+>;
 
 export type PayloadAddMeal = PayloadAction<
   Omit<MealItem, "id" | "timestamp"> & { startWeight: number }
+>;
+
+export type PayloadEditMeal = PayloadAction<
+  Omit<MealItem, "timestamp"> & {
+    startWeight: number;
+    day: number;
+    month: number;
+    year: number;
+  }
 >;

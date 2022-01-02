@@ -2,14 +2,14 @@ import styled from "@emotion/styled/macro";
 import {
   ErrorPattern,
   InputPattern,
-  InputSelectPattern,
+  InputContainerPattern,
   LabelPattern,
 } from "../styles/patterns";
 
 export const InputContainer = styled.div<{
   startWeight?: boolean;
 }>`
-  ${InputSelectPattern}
+  ${InputContainerPattern}
 `;
 
 export const InputItem = styled.input<{

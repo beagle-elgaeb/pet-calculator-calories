@@ -18,10 +18,12 @@ export const LogoContainer = styled(Link, LogoOpts)<{ visible?: boolean }>`
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 6px;
-  transition: all 0.2s ease-out;
 
   :hover {
-    margin: 2px 0 0 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 10px;
   }
 
   ${HoverAnimation}

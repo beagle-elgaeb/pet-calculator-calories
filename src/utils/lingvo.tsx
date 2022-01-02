@@ -65,3 +65,8 @@ export function formatDate(timestamp: number) {
   const date = new Date(timestamp);
   return `${date.getDate().toString()} ${getMonth(date)}`;
 }
+
+export function setStartDay(timestamp: number) {
+  const date = new Date(timestamp);
+  return date.setHours(0, 0, 0, 0);
+}

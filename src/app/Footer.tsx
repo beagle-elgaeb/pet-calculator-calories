@@ -1,9 +1,9 @@
-import { Copyright, FooterContainer } from "./Footer.styles";
+import { Copyright, FooterContainer, Text } from "./Footer.styles";
 
 function Footer() {
   return (
     <FooterContainer>
-      (2021)
+      <Text>(2021)</Text>
       <Copyright
         href="https://github.com/beagle-elgaeb"
         target="_blank"

@@ -12,13 +12,28 @@
     <title>Минималистичный калькулятор калорий</title>
     <style>
       body {
+        overflow-y: hidden;
         background: #ffffff;
-        font-family: -apple-system, BlinkMacSystemFont, "Inter", "Ubuntu",
-          sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "IBM Plex Sans",
+          "Ubuntu", sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         margin: 0;
       }
+
+      body::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      body::-webkit-scrollbar-track {
+        background: #fcfbff;
+      }
+
+      body::-webkit-scrollbar-thumb {
+        background: #f0ecff;
+        border-radius: 2px;
+      }
+
       #root {
         display: flex;
       }

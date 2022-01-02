@@ -1,52 +1,52 @@
 import { useFormik } from "formik";
-import { useMemo } from "react";
 import { useDispatch } from "react-redux";
 import Input from "../../components/Input";
-import { addMeal } from "../../redux/mealSlise";
-import { calcCaloriesEnding } from "../../utils/lingvo";
+import { editMeal } from "../../redux/mealSlise";
 import { prepareValues } from "../../utils/math";
-import { CalculatorFormProps, MealsInputValues } from "../../utils/types";
+import { MealFormProps } from "../../utils/types";
 import { onKeyPress } from "../../utils/utils";
 import { mealsValidationSchema } from "../../utils/validation";
-import {
-  Flex,
-  FormContainer,
-  Grid,
-  SaveButton,
-  Text,
-  Title,
-} from "./Form.styles";
+import { Flex, FormContainer, Grid, SaveButton, Text } from "./Form.style";
 
-function Form({ visible }: CalculatorFormProps) {
+function Form({ data, setEditedForm, onClose }: MealFormProps) {
   const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
-      name: "",
+      name: data?.name!,
       startWeight: 100,
-      protein: "",
-      fat: "",
-      carb: "",
-      weight: 100,
-    } as MealsInputValues,
-    validationSchema: mealsValidationSchema("create"),
+      protein: Math.round((data?.protein! * 100 * 100) / data?.weight!) / 100,
+      fat: Math.round((data?.fat! * 100 * 100) / data?.weight!) / 100,
+      carb: Math.round((data?.carb! * 100 * 100) / data?.weight!) / 100,
+      weight: data?.weight!,
+      day: new Date(data?.timestamp!).getDate(),
+      month: new Date(data?.timestamp!).getMonth() + 1,
+      year: new Date(data?.timestamp!).getFullYear(),
+    },
+    enableReinitialize: true,
+    validationSchema: mealsValidationSchema("edit"),
     onSubmit: (values, { resetForm }) => {
-      dispatch(addMeal({ ...(values as any), calories }));
+      dispatch(
+        editMeal({ ...values, id: data!.id, calories, day, month, year })
+      );
+      onClose();
+      setEditedForm(false);
       resetForm();
     },
   });
 
-  const { name, startWeight, protein, fat, carb, weight } = formik.values;
+  const { name, startWeight, protein, fat, carb, weight, day, month, year } =
+    formik.values;
 
-  const calories = useMemo(() => prepareValues(formik.values), [formik.values]);
+  const calories = prepareValues(formik.values);
 
   return (
-    <FormContainer onSubmit={formik.handleSubmit} visible={visible}>
+    <FormContainer onSubmit={formik.handleSubmit}>
       <Input
         formik={formik}
         value={name}
         name="name"
-        placeholder="Название продукта"
+        placeholder="Название"
         type={"text"}
       />
       <Flex>
@@ -62,7 +62,6 @@ function Form({ visible }: CalculatorFormProps) {
         />
         <Text>грамм</Text>
       </Flex>
-
       <Grid>
         <Input
           formik={formik}
@@ -89,7 +88,6 @@ function Form({ visible }: CalculatorFormProps) {
           onKeyPress={(evt) => onKeyPress(evt, formik)}
         />
       </Grid>
-      <Title>Вес продукта:</Title>
       <Input
         formik={formik}
         value={weight}
@@ -98,16 +96,41 @@ function Form({ visible }: CalculatorFormProps) {
         type={"number"}
         onKeyPress={(evt) => onKeyPress(evt, formik)}
       />
+      <Flex>
+        <Text>Дата:</Text>
+      </Flex>
+      <Grid>
+        <Input
+          formik={formik}
+          value={day}
+          name="day"
+          placeholder="День"
+          type={"number"}
+          onKeyPress={(evt) => onKeyPress(evt, formik)}
+        />
+        <Input
+          formik={formik}
+          value={month}
+          name="month"
+          placeholder="Месяц"
+          type={"number"}
+          onKeyPress={(evt) => onKeyPress(evt, formik)}
+        />
+        <Input
+          formik={formik}
+          value={year}
+          name="year"
+          placeholder="Год"
+          type={"number"}
+          onKeyPress={(evt) => onKeyPress(evt, formik)}
+        />
+      </Grid>
       <SaveButton
         type="submit"
-        aria-label="Добавить запись"
+        aria-label="Сохранить изменение"
         disabled={!formik.isValid}
       >
-        {` Добавить ${
-          calories === 0 || Number.isNaN(calories)
-            ? `немного килокалорий`
-            : `${calories} ${calcCaloriesEnding(calories)}`
-        }`}
+        Сохранить изменение
       </SaveButton>
     </FormContainer>
   );
