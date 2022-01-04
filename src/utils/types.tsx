@@ -122,9 +122,9 @@ export type ValidatedValues = Record<ValuesKey, number>;
 
 export type ProfileInputValues = {
   name: string;
-  age: number;
-  stature: number;
-  weight: number;
+  age: string;
+  stature: string;
+  weight: string;
   sex: number;
   activityLevel: number;
   target: number;

@@ -76,7 +76,7 @@ function Form({ setEditedForm }: ProfileFormProps) {
           value={age}
           name="age"
           placeholder="Возраст"
-          type={"number"}
+          type={"text"}
           onKeyPress={onKeyPressProfile}
         />
         <Input
@@ -84,7 +84,7 @@ function Form({ setEditedForm }: ProfileFormProps) {
           value={stature}
           name="stature"
           placeholder="Рост в см"
-          type={"number"}
+          type={"text"}
           onKeyPress={onKeyPressProfile}
         />
         <Input
@@ -92,7 +92,7 @@ function Form({ setEditedForm }: ProfileFormProps) {
           value={weight}
           name="weight"
           placeholder="Вес в кг"
-          type={"number"}
+          type={"text"}
           onKeyPress={onKeyPressProfile}
         />
       </Inputs>

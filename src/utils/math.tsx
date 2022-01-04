@@ -71,11 +71,17 @@ export function calcMetabolism({
 
   if (sex === 12) {
     baseMetabolism = Math.round(
-      447.593 + weight * 9.247 + stature * 3.098 - age * 4.33
+      447.593 +
+        Number(weight) * 9.247 +
+        Number(stature) * 3.098 -
+        Number(age) * 4.33
     );
   } else if (sex === 7) {
     baseMetabolism = Math.round(
-      88.362 + weight * 13.397 + stature * 4.799 - age * 5.667
+      88.362 +
+        Number(weight) * 13.397 +
+        Number(stature) * 4.799 -
+        Number(age) * 5.667
     );
   }
 
