@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import Input from "../../components/Input";
 import { editMeal } from "../../redux/mealSlise";
-import { prepareValues } from "../../utils/math";
+import { calcСalories } from "../../utils/math";
 import { MealFormProps } from "../../utils/types";
 import { handleNumericChange, onKeyPress } from "../../utils/utils";
 import { mealsValidationSchema } from "../../utils/validation";
@@ -48,7 +48,7 @@ function Form({ data, setEditedForm, onClose }: MealFormProps) {
   const { name, startWeight, protein, fat, carb, weight, day, month, year } =
     formik.values;
 
-  const calories = prepareValues(formik.values);
+  const calories = calcСalories(formik.values);
 
   return (
     <FormContainer onSubmit={formik.handleSubmit}>

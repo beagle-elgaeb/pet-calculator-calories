@@ -102,23 +102,12 @@ export type InputSelectPropsType = {
 
 export type MealsInputValues = {
   name: string;
-  startWeight: number | string;
-  protein: number | string;
-  fat: number | string;
-  carb: number | string;
-  weight: number | string;
+  startWeight: string;
+  protein: string;
+  fat: string;
+  carb: string;
+  weight: string;
 };
-
-export type CalculatedValues = {
-  startWeight: number;
-  protein: number;
-  fat: number;
-  carb: number;
-  weight: number;
-};
-
-export type ValuesKey = keyof CalculatedValues;
-export type ValidatedValues = Record<ValuesKey, number>;
 
 export type ProfileInputValues = {
   name: string;

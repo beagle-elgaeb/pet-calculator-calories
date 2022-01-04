@@ -15,7 +15,7 @@ export const InputContainerPattern = ({
   height: 40px;
   width: ${startWeight ? "80px" : "100%"};
   position: relative;
-  margin: ${startWeight ? "0 5px 10px" : "0 0 10px"};
+  margin: ${startWeight ? "0 5px 10px" : "6px 0 10px"};
 `;
 
 export const InputPattern = ({

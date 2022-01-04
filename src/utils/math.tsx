@@ -1,29 +1,14 @@
 import { MealItem } from "../redux/types";
-import {
-  CalculatedValues,
-  ValidatedValues,
-  ValuesKey,
-  MealsInputValues,
-  ProfileInputValues,
-} from "./types";
+import { MealsInputValues, ProfileInputValues } from "./types";
 
-export function prepareValues(inputValues: MealsInputValues) {
-  const values = { ...inputValues };
-
-  for (let key in values) {
-    if (typeof values[key as ValuesKey] === "string") {
-      values[key as ValuesKey] = 0;
-    }
-  }
-
-  return calcСalories(values as ValidatedValues);
-}
-
-export function calcСalories(values: CalculatedValues): number {
+export function calcСalories(values: MealsInputValues): number {
   let result = 0;
 
-  const weight = values.weight! / values.startWeight!;
-  const ccalIn100Gr = values.protein * 4 + values.fat! * 9 + values.carb! * 4;
+  const weight = Number(values.weight!) / Number(values.startWeight)!;
+  const ccalIn100Gr =
+    Number(values.protein) * 4 +
+    Number(values.fat!) * 9 +
+    Number(values.carb!) * 4;
 
   result = Math.round(ccalIn100Gr * weight);
 

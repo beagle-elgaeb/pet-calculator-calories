@@ -19,7 +19,7 @@ export const LinkToProfile = styled(Link)`
   line-height: 20px;
   font-weight: 300;
   text-decoration: none;
-  margin: 10px 0 0;
+  margin: 20px 0 0;
 
   ${HoverAnimation}
 `;

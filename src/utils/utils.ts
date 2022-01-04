@@ -5,14 +5,12 @@ export function onKeyPress(
   formik: any
 ) {
   if (
-    evt.key === "-" ||
-    evt.key === "+" ||
-    !/^[\d\.,]/.test(evt.key) ||
+    !/^[\d.,]/.test(evt.key) ||
     (evt.currentTarget.value === "0" && /^[0]/.test(evt.key)) ||
     evt.currentTarget.value.length >= 6 ||
     ((evt.currentTarget.value.includes(".") ||
       evt.currentTarget.value.includes(",")) &&
-      /^[\.,]/.test(evt.key))
+      /^[.,]/.test(evt.key))
   ) {
     evt.preventDefault();
   }
@@ -26,9 +24,8 @@ export function handleNumericChange(
   evt: ChangeEvent<HTMLInputElement>,
   formik: any
 ) {
-  console.log(evt.currentTarget, evt.currentTarget.value);
-
   const value = evt.currentTarget.value.replace(",", ".");
+
   formik.setFieldValue(evt.currentTarget.name, value);
 }
 

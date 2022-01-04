@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import Input from "../../components/Input";
 import { addMeal } from "../../redux/mealSlise";
 import { calcCaloriesEnding } from "../../utils/lingvo";
-import { prepareValues } from "../../utils/math";
+import { calcСalories } from "../../utils/math";
 import { CalculatorFormProps, MealsInputValues } from "../../utils/types";
 import { handleNumericChange, onKeyPress } from "../../utils/utils";
 import { mealsValidationSchema } from "../../utils/validation";
@@ -27,7 +27,7 @@ function Form({ visible }: CalculatorFormProps) {
       protein: "",
       fat: "",
       carb: "",
-      weight: 100,
+      weight: "100",
     } as MealsInputValues,
     validationSchema: mealsValidationSchema("create"),
     onSubmit: (values, { resetForm }) => {
@@ -38,7 +38,7 @@ function Form({ visible }: CalculatorFormProps) {
 
   const { name, startWeight, protein, fat, carb, weight } = formik.values;
 
-  const calories = useMemo(() => prepareValues(formik.values), [formik.values]);
+  const calories = useMemo(() => calcСalories(formik.values), [formik.values]);
 
   return (
     <FormContainer onSubmit={formik.handleSubmit} visible={visible}>
