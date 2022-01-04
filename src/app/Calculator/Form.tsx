@@ -6,7 +6,7 @@ import { addMeal } from "../../redux/mealSlise";
 import { calcCaloriesEnding } from "../../utils/lingvo";
 import { prepareValues } from "../../utils/math";
 import { CalculatorFormProps, MealsInputValues } from "../../utils/types";
-import { onKeyPress } from "../../utils/utils";
+import { handleNumericChange, onKeyPress } from "../../utils/utils";
 import { mealsValidationSchema } from "../../utils/validation";
 import {
   Flex,
@@ -23,7 +23,7 @@ function Form({ visible }: CalculatorFormProps) {
   const formik = useFormik({
     initialValues: {
       name: "",
-      startWeight: 100,
+      startWeight: "100",
       protein: "",
       fat: "",
       carb: "",
@@ -47,7 +47,7 @@ function Form({ visible }: CalculatorFormProps) {
         value={name}
         name="name"
         placeholder="Название продукта"
-        type={"text"}
+        handleChange={formik.handleChange}
       />
       <Flex>
         <Text>БЖУ на</Text>
@@ -56,8 +56,8 @@ function Form({ visible }: CalculatorFormProps) {
           value={startWeight}
           name="startWeight"
           placeholder="-Граммы"
-          type={"number"}
           onKeyPress={(evt) => onKeyPress(evt, formik)}
+          handleChange={(evt) => handleNumericChange(evt, formik)}
           startWeight={true}
         />
         <Text>грамм</Text>
@@ -69,24 +69,24 @@ function Form({ visible }: CalculatorFormProps) {
           value={protein}
           name="protein"
           placeholder="Белки"
-          type={"number"}
           onKeyPress={(evt) => onKeyPress(evt, formik)}
+          handleChange={(evt) => handleNumericChange(evt, formik)}
         />
         <Input
           formik={formik}
           value={fat}
           name="fat"
           placeholder="Жиры"
-          type={"number"}
           onKeyPress={(evt) => onKeyPress(evt, formik)}
+          handleChange={(evt) => handleNumericChange(evt, formik)}
         />
         <Input
           formik={formik}
           value={carb}
           name="carb"
           placeholder="Углеводы"
-          type={"number"}
           onKeyPress={(evt) => onKeyPress(evt, formik)}
+          handleChange={(evt) => handleNumericChange(evt, formik)}
         />
       </Grid>
       <Title>Вес продукта:</Title>
@@ -95,8 +95,8 @@ function Form({ visible }: CalculatorFormProps) {
         value={weight}
         name="weight"
         placeholder="Граммы"
-        type={"number"}
         onKeyPress={(evt) => onKeyPress(evt, formik)}
+        handleChange={(evt) => handleNumericChange(evt, formik)}
       />
       <SaveButton
         type="submit"

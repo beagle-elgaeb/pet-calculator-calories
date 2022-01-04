@@ -1,4 +1,4 @@
-import { KeyboardEvent as ReactKeyboardEvent } from "react";
+import { ChangeEvent, KeyboardEvent as ReactKeyboardEvent } from "react";
 
 export function onKeyPress(
   evt: ReactKeyboardEvent<HTMLInputElement>,
@@ -7,24 +7,29 @@ export function onKeyPress(
   if (
     evt.key === "-" ||
     evt.key === "+" ||
-    evt.key === "e" ||
-    // (evt.currentTarget.value === "0" && /^[0]/.test(evt.key)) ||
-    evt.currentTarget.value.length >= 6
+    !/^[\d\.,]/.test(evt.key) ||
+    (evt.currentTarget.value === "0" && /^[0]/.test(evt.key)) ||
+    evt.currentTarget.value.length >= 6 ||
+    ((evt.currentTarget.value.includes(".") ||
+      evt.currentTarget.value.includes(",")) &&
+      /^[\.,]/.test(evt.key))
   ) {
     evt.preventDefault();
   }
 
-  // const cursorPosition = input.selectionStart;
-  // console.log(cursorPosition);
-  // console.log(input.selectionEnd);
+  if (evt.currentTarget.value === "0" && /^[1-9]/.test(evt.key)) {
+    formik.setFieldValue(evt.currentTarget.name, "");
+  }
+}
 
-  // if (evt.key === ",") {
-  //   evt.preventDefault();
-  // }
+export function handleNumericChange(
+  evt: ChangeEvent<HTMLInputElement>,
+  formik: any
+) {
+  console.log(evt.currentTarget, evt.currentTarget.value);
 
-  // if (evt.currentTarget.value === "0" && /^[1-9]/.test(evt.key)) {
-  //   formik.setFieldValue(evt.currentTarget.name, "");
-  // }
+  const value = evt.currentTarget.value.replace(",", ".");
+  formik.setFieldValue(evt.currentTarget.name, value);
 }
 
 export function onKeyPressProfile(evt: ReactKeyboardEvent<HTMLInputElement>) {

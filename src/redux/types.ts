@@ -9,10 +9,10 @@ export interface History {
 export interface MealItem {
   id: number;
   name: string;
-  protein: number;
-  fat: number;
-  carb: number;
-  weight: number;
+  protein: string;
+  fat: string;
+  carb: string;
+  weight: string;
   calories: number;
   timestamp: number;
 }
@@ -40,14 +40,14 @@ export type PayloadAddHistory = PayloadAction<
 >;
 
 export type PayloadAddMeal = PayloadAction<
-  Omit<MealItem, "id" | "timestamp"> & { startWeight: number }
+  Omit<MealItem, "id" | "timestamp"> & { startWeight: string }
 >;
 
 export type PayloadEditMeal = PayloadAction<
   Omit<MealItem, "timestamp"> & {
-    startWeight: number;
-    day: number;
-    month: number;
-    year: number;
+    startWeight: string;
+    day: string;
+    month: string;
+    year: string;
   }
 >;

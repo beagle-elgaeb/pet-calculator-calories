@@ -41,10 +41,10 @@ export function calcTotalParameters(meals: MealItem[], date: number) {
 
   meals.forEach((meal) => {
     summCalories = summCalories + meal.calories!;
-    summProtein = summProtein + Math.round(meal.protein! * 100) / 100;
-    summFat = summFat + Math.round(meal.fat! * 100) / 100;
-    summCarb = summCarb + Math.round(meal.carb! * 100) / 100;
-    summWeight = summWeight + Math.round(meal.weight! * 100) / 100;
+    summProtein = summProtein + Math.round(Number(meal.protein!) * 100) / 100;
+    summFat = summFat + Math.round(Number(meal.fat!) * 100) / 100;
+    summCarb = summCarb + Math.round(Number(meal.carb!) * 100) / 100;
+    summWeight = summWeight + Math.round(Number(meal.weight!) * 100) / 100;
   });
 
   mealsByDay = { ...mealsByDay, [date]: meals };

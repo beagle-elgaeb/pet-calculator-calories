@@ -1,6 +1,13 @@
 import * as Yup from "yup";
 
 const schemaPFC = Yup.number()
+  // .transform((_, value) => {
+  //   if (value.includes(",")) {
+  //     console.log(value, value.replace(",", "."));
+  //     return value.replace(",", ".");
+  //   }
+  //   return value;
+  // })
   .min(0, "Мало")
   .max(100, "Много")
   .required("Нужно");
@@ -21,7 +28,6 @@ export const mealsValidationSchema = (form: "create" | "edit") => {
     weight: Yup.number().max(1000, "Многовато").positive("?").required("Нужно"),
     ...(form === "edit"
       ? {
-          // max(31, "Нет")
           day: Yup.number()
             .min(1, "Нет")
             .required("Нужно")

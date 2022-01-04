@@ -4,7 +4,7 @@ import Input from "../../components/Input";
 import { editMeal } from "../../redux/mealSlise";
 import { prepareValues } from "../../utils/math";
 import { MealFormProps } from "../../utils/types";
-import { onKeyPress } from "../../utils/utils";
+import { handleNumericChange, onKeyPress } from "../../utils/utils";
 import { mealsValidationSchema } from "../../utils/validation";
 import { Flex, FormContainer, Grid, SaveButton, Text } from "./Form.style";
 
@@ -14,14 +14,24 @@ function Form({ data, setEditedForm, onClose }: MealFormProps) {
   const formik = useFormik({
     initialValues: {
       name: data?.name!,
-      startWeight: 100,
-      protein: Math.round((data?.protein! * 100 * 100) / data?.weight!) / 100,
-      fat: Math.round((data?.fat! * 100 * 100) / data?.weight!) / 100,
-      carb: Math.round((data?.carb! * 100 * 100) / data?.weight!) / 100,
+      startWeight: "100",
+      protein: String(
+        Math.round(
+          (Number(data?.protein!) * 100 * 100) / Number(data?.weight!)
+        ) / 100
+      ),
+      fat: String(
+        Math.round((Number(data?.fat!) * 100 * 100) / Number(data?.weight!)) /
+          100
+      ),
+      carb: String(
+        Math.round((Number(data?.carb!) * 100 * 100) / Number(data?.weight!)) /
+          100
+      ),
       weight: data?.weight!,
-      day: new Date(data?.timestamp!).getDate(),
-      month: new Date(data?.timestamp!).getMonth() + 1,
-      year: new Date(data?.timestamp!).getFullYear(),
+      day: String(new Date(data?.timestamp!).getDate()),
+      month: String(new Date(data?.timestamp!).getMonth() + 1),
+      year: String(new Date(data?.timestamp!).getFullYear()),
     },
     enableReinitialize: true,
     validationSchema: mealsValidationSchema("edit"),
@@ -47,7 +57,7 @@ function Form({ data, setEditedForm, onClose }: MealFormProps) {
         value={name}
         name="name"
         placeholder="Название"
-        type={"text"}
+        handleChange={formik.handleChange}
       />
       <Flex>
         <Text>БЖУ на</Text>
@@ -56,8 +66,8 @@ function Form({ data, setEditedForm, onClose }: MealFormProps) {
           value={startWeight}
           name="startWeight"
           placeholder="-Граммы"
-          type={"number"}
           onKeyPress={(evt) => onKeyPress(evt, formik)}
+          handleChange={(evt) => handleNumericChange(evt, formik)}
           startWeight={true}
         />
         <Text>грамм</Text>
@@ -68,24 +78,24 @@ function Form({ data, setEditedForm, onClose }: MealFormProps) {
           value={protein}
           name="protein"
           placeholder="Белки"
-          type={"number"}
           onKeyPress={(evt) => onKeyPress(evt, formik)}
+          handleChange={(evt) => handleNumericChange(evt, formik)}
         />
         <Input
           formik={formik}
           value={fat}
           name="fat"
           placeholder="Жиры"
-          type={"number"}
           onKeyPress={(evt) => onKeyPress(evt, formik)}
+          handleChange={(evt) => handleNumericChange(evt, formik)}
         />
         <Input
           formik={formik}
           value={carb}
           name="carb"
           placeholder="Углеводы"
-          type={"number"}
           onKeyPress={(evt) => onKeyPress(evt, formik)}
+          handleChange={(evt) => handleNumericChange(evt, formik)}
         />
       </Grid>
       <Input
@@ -93,8 +103,8 @@ function Form({ data, setEditedForm, onClose }: MealFormProps) {
         value={weight}
         name="weight"
         placeholder="Граммы"
-        type={"number"}
         onKeyPress={(evt) => onKeyPress(evt, formik)}
+        handleChange={(evt) => handleNumericChange(evt, formik)}
       />
       <Flex>
         <Text>Дата:</Text>
@@ -105,24 +115,24 @@ function Form({ data, setEditedForm, onClose }: MealFormProps) {
           value={day}
           name="day"
           placeholder="День"
-          type={"number"}
           onKeyPress={(evt) => onKeyPress(evt, formik)}
+          handleChange={formik.handleChange}
         />
         <Input
           formik={formik}
           value={month}
           name="month"
           placeholder="Месяц"
-          type={"number"}
           onKeyPress={(evt) => onKeyPress(evt, formik)}
+          handleChange={formik.handleChange}
         />
         <Input
           formik={formik}
           value={year}
           name="year"
           placeholder="Год"
-          type={"number"}
           onKeyPress={(evt) => onKeyPress(evt, formik)}
+          handleChange={formik.handleChange}
         />
       </Grid>
       <SaveButton

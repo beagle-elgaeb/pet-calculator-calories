@@ -67,7 +67,7 @@ function Form({ setEditedForm }: ProfileFormProps) {
         value={name}
         name="name"
         placeholder="Имя"
-        type={"text"}
+        handleChange={formik.handleChange}
       />
       <Title>Введите данные чтобы рассчитать дневную норму калорийности</Title>
       <Inputs>
@@ -76,24 +76,24 @@ function Form({ setEditedForm }: ProfileFormProps) {
           value={age}
           name="age"
           placeholder="Возраст"
-          type={"text"}
           onKeyPress={onKeyPressProfile}
+          handleChange={formik.handleChange}
         />
         <Input
           formik={formik}
           value={stature}
           name="stature"
           placeholder="Рост в см"
-          type={"text"}
           onKeyPress={onKeyPressProfile}
+          handleChange={formik.handleChange}
         />
         <Input
           formik={formik}
           value={weight}
           name="weight"
           placeholder="Вес в кг"
-          type={"text"}
           onKeyPress={onKeyPressProfile}
+          handleChange={formik.handleChange}
         />
       </Inputs>
       <InputSelect

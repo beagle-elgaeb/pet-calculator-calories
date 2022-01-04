@@ -6,8 +6,8 @@ function Input({
   value,
   name,
   placeholder,
-  type,
   onKeyPress,
+  handleChange,
   onFocus,
   startWeight,
 }: InputProps) {
@@ -19,10 +19,10 @@ function Input({
       <InputItem
         placeholder={placeholder.slice(1)}
         name={name}
-        type={type}
+        type="text"
         isValid={!getError(name)}
         value={value ?? ""}
-        onChange={formik.handleChange}
+        onChange={handleChange}
         onBlur={formik.handleBlur}
         onFocus={onFocus}
         onKeyPress={onKeyPress}

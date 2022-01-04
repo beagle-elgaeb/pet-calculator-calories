@@ -12,18 +12,24 @@ export const mealSlise = createSlice({
       state.unshift({
         id: Date.now(),
         name: payload.name,
-        protein:
+        protein: String(
           Math.round(
-            (payload.protein! * payload.weight! * 100) / payload.startWeight
-          ) / 100,
-        fat:
+            (Number(payload.protein!) * Number(payload.weight!) * 100) /
+              Number(payload.startWeight)
+          ) / 100
+        ),
+        fat: String(
           Math.round(
-            (payload.fat! * payload.weight! * 100) / payload.startWeight
-          ) / 100,
-        carb:
+            (Number(payload.fat!) * Number(payload.weight!) * 100) /
+              Number(payload.startWeight)
+          ) / 100
+        ),
+        carb: String(
           Math.round(
-            (payload.carb! * payload.weight! * 100) / payload.startWeight
-          ) / 100,
+            (Number(payload.carb!) * Number(payload.weight!) * 100) /
+              Number(payload.startWeight)
+          ) / 100
+        ),
         weight: payload.weight,
         calories: payload.calories,
         timestamp: Date.now(),
@@ -34,23 +40,26 @@ export const mealSlise = createSlice({
 
       newMeal!.name = payload.name;
       newMeal!.protein =
-        Math.round(
-          (payload.protein! * payload.weight! * 100) / payload.startWeight
-        ) / 100;
+        String(Math.round(
+          (Number(payload.protein!) * Number(payload.weight!) * 100) /
+            Number(payload.startWeight)
+        ) / 100);
       newMeal!.fat =
-        Math.round(
-          (payload.fat! * payload.weight! * 100) / payload.startWeight
-        ) / 100;
+        String(Math.round(
+          (Number(payload.fat!) * Number(payload.weight!) * 100) /
+            Number(payload.startWeight)
+        ) / 100);
       newMeal!.carb =
-        Math.round(
-          (payload.carb! * payload.weight! * 100) / payload.startWeight
-        ) / 100;
+        String(Math.round(
+          (Number(payload.carb!) * Number(payload.weight!) * 100) /
+            Number(payload.startWeight)
+        ) / 100);
       newMeal!.weight = payload.weight;
       newMeal!.calories = payload.calories;
       newMeal!.timestamp = new Date(newMeal!.timestamp).setFullYear(
-        payload.year,
-        payload.month - 1,
-        payload.day
+        Number(payload.year),
+        Number(payload.month) - 1,
+        Number(payload.day)
       );
     },
     remove: (state, { payload }: PayloadAction<{ id: number }>) => {

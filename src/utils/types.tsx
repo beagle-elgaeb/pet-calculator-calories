@@ -1,4 +1,4 @@
-import { KeyboardEvent as ReactKeyboardEvent } from "react";
+import { ChangeEvent, KeyboardEvent as ReactKeyboardEvent } from "react";
 import { MealItem } from "../redux/types";
 
 // Типы пропсов
@@ -84,8 +84,8 @@ export type InputProps = {
   value: string | number;
   name: string;
   placeholder: string;
-  type: string;
   onKeyPress?: (evt: ReactKeyboardEvent<HTMLInputElement>) => void;
+  handleChange: (evt: ChangeEvent<HTMLInputElement>, formik?: any) => void;
   onFocus?: () => void;
   startWeight?: boolean;
 };
