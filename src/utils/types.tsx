@@ -30,6 +30,11 @@ export type MealsProps = {
   handleMealClick: (meal: MealItem) => void;
 };
 
+export type MealProps = {
+  meal: MealItem;
+  handleMealClick: (meal: MealItem) => void;
+};
+
 export type InfographicsProps = {
   summCalories: number;
   summProtein: number;

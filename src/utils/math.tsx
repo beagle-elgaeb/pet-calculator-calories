@@ -71,7 +71,20 @@ export function calcMetabolism({
   }
 
   const activeMetabolism = Math.round(baseMetabolism * activityLevel);
-  const targetMetabolism = Math.round(activeMetabolism * target);
+
+  let targetMetabolism = 0;
+
+  if (sex === 12) {
+    targetMetabolism =
+      Math.round(activeMetabolism * target) > 1200
+        ? Math.round(activeMetabolism * target)
+        : 1200;
+  } else if (sex === 7) {
+    targetMetabolism =
+      Math.round(activeMetabolism * target) > 1800
+        ? Math.round(activeMetabolism * target)
+        : 1800;
+  }
 
   const targetProtein = (targetMetabolism * 0.3) / 4;
   const targetFat = (targetMetabolism * 0.3) / 9;

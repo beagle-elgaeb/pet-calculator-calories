@@ -9,7 +9,7 @@ function Header({ onMenuClick, popupOpened }: HeaderProps) {
       <Center>
         <Title>Минималистичный</Title>
         <Title>калькулятор</Title>
-        <Title> калорий</Title>
+        <Title>калорий</Title>
       </Center>
       <MenuButton
         type="button"

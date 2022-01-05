@@ -1,4 +1,4 @@
-import Days from "./Days";
+import Days from "../Days/Days";
 import Form from "./Form";
 import { CalculatorContainer, OpenFormButton, OpenFormButtonIcon } from "./Calculator.styles";
 import { CalculatorProps } from "../../utils/types";

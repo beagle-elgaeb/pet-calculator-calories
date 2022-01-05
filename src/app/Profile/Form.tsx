@@ -29,10 +29,12 @@ import {
 
 function Form({ setEditedForm }: ProfileFormProps) {
   const dispatch = useDispatch();
+
+  // -----1-----
   const data = useSelector((state: State) => state.profile);
 
+  // -----2-----
   const formik = useFormik({
-    enableReinitialize: true,
     initialValues: {
       name: data.name,
       age: data.age,
@@ -42,12 +44,14 @@ function Form({ setEditedForm }: ProfileFormProps) {
       activityLevel: data.activityLevel,
       target: data.target,
     } as ProfileInputValues,
+    enableReinitialize: true,
     validationSchema: profileValidationSchema,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       dispatch(saveProfile({ ...values, baseMetabolism, targetMetabolism }));
       dispatch(addHistory({ targetMetabolism }));
 
       setEditedForm(false);
+      resetForm();
     },
   });
 
@@ -166,3 +170,10 @@ function Form({ setEditedForm }: ProfileFormProps) {
 }
 
 export default Form;
+
+// 1.   Получение соохранённых даннных пользователя
+// 2.   Данные для управления элементами формы:
+//      - при сабмите формы сохраняются введёные данные введёные в форму,
+//      создаётся запись о смене целевого метаболизма (для корректной
+//      отрисовки графиков на каждый день), форма возвращается в
+//      нередактируемое состояние, сброс формы

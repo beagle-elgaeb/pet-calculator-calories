@@ -1,15 +1,12 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { remove } from "../../redux/mealSlise";
-import { MealItem, State } from "../../redux/types";
+import { useSelector } from "react-redux";
+import { State } from "../../redux/types";
 import { formatDate } from "../../utils/lingvo";
 import { calcTotalParameters } from "../../utils/math";
 import { MealsProps } from "../../utils/types";
+import Meal from "../Meal/Meal";
 import Infographics from "./Infographics";
 import {
-  DeleteButton,
-  Meal,
-  MealName,
   MealsContainer,
   OpenDataButton,
   OpenDataButtonIcon,
@@ -21,8 +18,6 @@ import {
 } from "./Meals.style";
 
 function Meals({ date, handleMealClick }: MealsProps) {
-  const dispatch = useDispatch();
-
   const [openData, setOpenData] = useState(false);
 
   const meals = useSelector((state: State) => state.meals);
@@ -40,10 +35,6 @@ function Meals({ date, handleMealClick }: MealsProps) {
     summWeight,
   } = calcTotalParameters(mealsInDay, date);
 
-  function handleRemoveMeal(meal: MealItem) {
-    dispatch(remove({ id: meal.id }));
-  }
-
   return (
     <>
       <OpenDataButton type="button" onClick={() => setOpenData(!openData)}>
@@ -54,16 +45,7 @@ function Meals({ date, handleMealClick }: MealsProps) {
         <>
           <MealsContainer>
             {mealsByDay[date].map((meal, i) => (
-              <Meal key={i}>
-                <MealName onClick={() => handleMealClick(meal)}>
-                  {meal.name} ({meal.weight} г.)
-                </MealName>
-                <DeleteButton
-                  type="button"
-                  onClick={() => handleRemoveMeal(meal)}
-                  aria-label="Удалить приём пищи"
-                ></DeleteButton>
-              </Meal>
+              <Meal key={i} meal={meal} handleMealClick={handleMealClick} />
             ))}
           </MealsContainer>
           <TotalsSubtitle>
