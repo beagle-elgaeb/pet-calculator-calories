@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="260mm"
+   height="260mm"
+   viewBox="0 0 260 260"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="favicon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="true"
+     showguides="false"
+     width="260mm"
+     inkscape:zoom="0.7"
+     inkscape:cx="35"
+     inkscape:cy="372"
+     inkscape:window-width="1799"
+     inkscape:window-height="1368"
+     inkscape:window-x="1913"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid362" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient12850">
+      <stop
+         style="stop-color:#9d4dd0;stop-opacity:1;"
+         offset="0"
+         id="stop12846" />
+      <stop
+         style="stop-color:#f3c700;stop-opacity:1"
+         offset="1"
+         id="stop12848" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient7119"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#f3c700;stop-opacity:1;"
+         offset="0"
+         id="stop7117" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4218"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#f3c700;stop-opacity:1;"
+         offset="0"
+         id="stop4216" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4129"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#f3c700;stop-opacity:1;"
+         offset="0"
+         id="stop4127" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect3306"
+       is_visible="true"
+       lpeversion="1"
+       satellites_param="F,0,0,1,0,44,0,1 @ F,0,0,1,0,76,0,1 @ F,0,0,1,0,40,0,1 @ F,0,0,1,0,72,0,1"
+       unit="px"
+       method="auto"
+       mode="F"
+       radius="20"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient12850"
+       id="radialGradient12852"
+       cx="130"
+       cy="115"
+       fx="130"
+       fy="115"
+       r="95"
+       gradientTransform="matrix(0.8,-9e-4,9e-4,0.8,25,37)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#f3c700;fill-opacity:1;fill-rule:evenodd;stroke:#3f23a6;stroke-width:40;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="rect31"
+       width="220"
+       height="190"
+       x="30"
+       y="35"
+       inkscape:path-effect="#path-effect3306"
+       d="m 64,35 h 100 a 76,76 45 0 1 76,76 v 74 a 40,40 135 0 1 -40,40 H 92 A 72,72 45 0 1 20,153 V 79 A 44,44 135 0 1 64,35 Z"
+       sodipodi:type="rect" />
+    <ellipse
+       style="opacity:1;mix-blend-mode:normal;fill:url(#radialGradient12852);fill-opacity:1;fill-rule:nonzero;stroke:#9d4dd0;stroke-width:36.1905;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="path1419"
+       ry="77.5"
+       rx="77.5"
+       cy="130"
+       cx="130" />
+  </g>
+</svg>
