@@ -72,7 +72,7 @@ export const mealsValidationSchema = (form: "create" | "edit") => {
 export const profileValidationSchema = Yup.object({
   name: Yup.string()
     .min(2, "Слишком короткое имя")
-    .max(30, "Слишком длинное имя")
+    .max(60, "Слишком длинное имя")
     .required("Имя не может быть пустым"),
   age: Yup.number().min(13, "От 13").max(80, "До 80").required("Нужно"),
   stature: Yup.number().min(100, "Мало").max(300, "Много").required("Нужно"),
