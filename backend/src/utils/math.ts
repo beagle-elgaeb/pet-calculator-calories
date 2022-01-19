@@ -1,4 +1,4 @@
-export function calctargetMetabolism({
+export function calcTargetMetabolism({
   age,
   stature,
   weight,

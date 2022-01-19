@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import { Model } from "objection";
 import { incorrectData } from "../constants";
-import Unauthorized from "../errors/unauthorized-err";
+import Unauthorized from "../errors/UnauthorizedErr";
 
 export class User extends Model {
   static tableName = "user";

@@ -1,18 +1,17 @@
 import bcrypt from "bcryptjs";
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { devSecret } from "../config";
+import { jwtSecret } from "../config";
 import {
   authorizationCompleted,
   authorizationError,
   incorrectData,
-  userFound,
 } from "../constants";
-import BadRequestError from "../errors/bad-request-err";
-import Unauthorized from "../errors/unauthorized-err";
+import BadRequestError from "../errors/BadRequestErr";
+import Unauthorized from "../errors/UnauthorizedErr";
 import { User } from "../models/user";
 
-const { NODE_ENV, JWT_SECRET } = process.env;
+const { NODE_ENV } = process.env;
 
 export const createUser = async (
   req: Request,
@@ -38,10 +37,6 @@ export const createUser = async (
       email: user.email,
     });
   } catch (err: any) {
-    if (err.name === "ValidationError") {
-      return next(new BadRequestError(incorrectData));
-    }
-
     next(err);
   }
 };
@@ -61,11 +56,7 @@ export const login = async (
       throw new Unauthorized(authorizationError);
     }
 
-    const token = jwt.sign(
-      { id: user.id },
-      NODE_ENV === "production" ? JWT_SECRET! : devSecret,
-      { expiresIn: "7d" }
-    );
+    const token = jwt.sign({ id: user.id }, jwtSecret, { expiresIn: "7d" });
 
     res
       .cookie(

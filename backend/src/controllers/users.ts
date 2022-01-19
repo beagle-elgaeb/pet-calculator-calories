@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { incorrectData } from "../constants";
-import BadRequestError from "../errors/bad-request-err";
+import BadRequestError from "../errors/BadRequestErr";
 import { Target } from "../models/target";
 import { User } from "../models/user";
-import { calctargetMetabolism } from "../utils/math";
+import { calcTargetMetabolism } from "../utils/math";
 
 export const getUser = async (
   req: Request,
@@ -39,7 +39,7 @@ export const editUser = async (
     const { age, stature, weight, sex, activityLevel, target } = user;
 
     const targetAdded = await Target.query().insert({
-      targetMetabolism: calctargetMetabolism({
+      targetMetabolism: calcTargetMetabolism({
         age,
         stature,
         weight,

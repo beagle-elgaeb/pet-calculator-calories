@@ -1,6 +1,6 @@
 import { celebrate, Joi } from "celebrate";
 
-export const validNewUser = celebrate({
+export const validateNewUser = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required().min(8),
@@ -8,20 +8,20 @@ export const validNewUser = celebrate({
   }),
 });
 
-export const validLogin = celebrate({
+export const validateLogin = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required().min(8),
   }),
 });
 
-export const validEditedPassword = celebrate({
+export const validateEditedPassword = celebrate({
   body: Joi.object().keys({
     password: Joi.string().required().min(8),
   }),
 });
 
-export const validEditedUserData = celebrate({
+export const validateEditedUserData = celebrate({
   body: Joi.object().keys({
     email: Joi.string().email(),
     name: Joi.string().min(2).max(30),
@@ -43,7 +43,7 @@ export const validEditedUserData = celebrate({
   }),
 });
 
-export const validAddedMeal = celebrate({
+export const validateAddedMeal = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(4).max(100),
     protein: Joi.number().required(),
@@ -53,7 +53,7 @@ export const validAddedMeal = celebrate({
   }),
 });
 
-export const validEditedMeal = celebrate({
+export const validateEditedMeal = celebrate({
   params: Joi.object().keys({
     id: Joi.number().required(),
   }),
@@ -67,14 +67,8 @@ export const validEditedMeal = celebrate({
   }),
 });
 
-export const validMealId = celebrate({
+export const validateMealId = celebrate({
   params: Joi.object().keys({
     id: Joi.number().required(),
   }),
 });
-
-// export const validTarget = celebrate({
-//   body: Joi.object().keys({
-//     targetMetabolism: Joi.number().required(),
-//   }),
-// });

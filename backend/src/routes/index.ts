@@ -1,17 +1,17 @@
 import rout from "express";
 import { notFound } from "../constants";
 import { createUser, login, logout, deleteUser } from "../controllers/auth";
-import NotFoundError from "../errors/not-found-err";
+import NotFoundError from "../errors/NotFoundErr";
 import auth from "../middlewares/auth";
-import { validLogin, validNewUser } from "../middlewares/validation";
+import { validateLogin, validateNewUser } from "../middlewares/validation";
 import mealsRouter from "./meals";
 import targetRouter from "./target";
 import usersRouter from "./users";
 
 const routes = rout.Router();
 
-routes.post("/signup", validNewUser, createUser);
-routes.post("/signin", validLogin, login);
+routes.post("/signup", validateNewUser, createUser);
+routes.post("/signin", validateLogin, login);
 routes.post("/signout", logout);
 
 routes.delete("/delete", auth, deleteUser);

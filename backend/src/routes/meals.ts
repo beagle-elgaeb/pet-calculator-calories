@@ -1,16 +1,16 @@
 import rout from "express";
 import { addMeal, deleteMeal, editMeal, getMeals } from "../controllers/meals";
 import {
-  validAddedMeal,
-  validEditedMeal,
-  validMealId,
+  validateAddedMeal,
+  validateEditedMeal,
+  validateMealId,
 } from "../middlewares/validation";
 
 const router = rout.Router();
 
 router.get("/", getMeals);
-router.post("/", validAddedMeal, addMeal);
-router.patch("/:id", validEditedMeal, editMeal);
-router.delete("/:id", validMealId, deleteMeal);
+router.post("/", validateAddedMeal, addMeal);
+router.patch("/:id", validateEditedMeal, editMeal);
+router.delete("/:id", validateMealId, deleteMeal);
 
 export default router;

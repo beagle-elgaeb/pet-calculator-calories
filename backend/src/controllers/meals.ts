@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { incorrectData, invalidId } from "../constants";
-import BadRequestError from "../errors/bad-request-err";
+import BadRequestError from "../errors/BadRequestErr";
 import { Meal } from "../models/meal";
 
 export const getMeals = async (
@@ -34,10 +34,6 @@ export const addMeal = async (
 
     res.send(mealAdded);
   } catch (err: any) {
-    if (err.name === "ValidationError") {
-      return next(new BadRequestError(incorrectData));
-    }
-
     next(err);
   }
 };
@@ -58,10 +54,6 @@ export const editMeal = async (
 
     res.send(mealEdited);
   } catch (err: any) {
-    if (err.name === "ValidationError") {
-      return next(new BadRequestError(incorrectData));
-    }
-
     next(err);
   }
 };
@@ -76,10 +68,6 @@ export const deleteMeal = async (
 
     res.send("Приём пищи удалён");
   } catch (err: any) {
-    if (err.name === "ValidationError") {
-      return next(new BadRequestError(invalidId));
-    }
-
     next(err);
   }
 };

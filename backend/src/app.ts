@@ -1,30 +1,22 @@
 import { errors } from "celebrate";
 import cookieParser from "cookie-parser";
-import dotenv from "dotenv";
 import express from "express";
 import helmet from "helmet";
 import Knex from "knex";
-import { knexSnakeCaseMappers, Model } from "objection";
+import { Model } from "objection";
 import { types } from "pg";
-import { serverProperty } from "./config";
+import { databaseConfig } from "./config";
 import cors from "./middlewares/cors";
 import errorHandler from "./middlewares/error-handler";
 import { errorLogger, requestLogger } from "./middlewares/logger";
 import rateLimiter from "./middlewares/rate-limit";
 import routes from "./routes";
 
-dotenv.config();
-
-const { NODE_ENV, DATA_BASE, PORT = 3000 } = process.env;
+const { PORT = 3000 } = process.env;
 
 const app = express();
 
-const knex = Knex({
-  client: "pg",
-  connection: NODE_ENV === "production" ? DATA_BASE! : serverProperty,
-
-  ...knexSnakeCaseMappers(),
-});
+const knex = Knex(databaseConfig);
 
 types.setTypeParser(1700, "text", parseFloat);
 
