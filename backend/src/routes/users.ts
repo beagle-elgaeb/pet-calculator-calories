@@ -6,6 +6,6 @@ const router = rout.Router();
 
 router.get("/me", getUser);
 router.patch("/me", validEditedUserData, editUser);
-router.patch("/me", validEditedPassword, editPassword);
+router.patch("/me-pass", validEditedPassword, editPassword);
 
 export default router;

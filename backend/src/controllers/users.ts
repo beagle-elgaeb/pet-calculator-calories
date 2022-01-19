@@ -75,7 +75,7 @@ export const editPassword = async (
       throw new BadRequestError(incorrectData);
     }
 
-    res.send(userEdited);
+    res.send("Пароль успешно изменён");
   } catch (err: any) {
     next(err);
   }
