@@ -108,6 +108,32 @@ export const TablePattern = css`
   row-gap: 10px;
 `;
 
+export const TitleAuthPattern = css`
+  font-size: 22px;
+  line-height: 24px;
+  font-weight: 300;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 10px 0 30px;
+`;
+
+export const TextAuthPattern = css`
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 200;
+  text-align: center;
+  margin: 10px 0 30px;
+`;
+
+export const LinkAuthPattern = css`
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 400;
+  color: ${purple};
+  text-decoration: none;
+  margin: 0 auto 60px;
+`;
+
 export const HoverAnimation = css`
   transition: all 0.2s ease-out;
   cursor: pointer;

@@ -5,6 +5,7 @@ function Input({
   formik,
   value,
   name,
+  type,
   placeholder,
   onKeyPress,
   handleChange,
@@ -19,7 +20,7 @@ function Input({
       <InputItem
         placeholder={placeholder.slice(1)}
         name={name}
-        type="text"
+        type={type ?? "text"}
         isValid={!getError(name)}
         value={value ?? ""}
         onChange={handleChange}

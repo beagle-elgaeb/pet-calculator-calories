@@ -5,6 +5,8 @@ import { useLoadFromStorage } from "../utils/localStorage";
 import AboutProject from "./AboutProject/AboutProject";
 import { AppContainer } from "./App.styles";
 import Layout from "./AppLayout";
+import Auth from "./Authentication/Auth";
+import Register from "./Authentication/Register";
 import Calculator from "./Calculator/Calculator";
 import MealPopup from "./Meal/MealPopup";
 import MenuPopup from "./Menu/MenuPopup";
@@ -74,6 +76,10 @@ function App() {
 
             {/* -----9----- */}
             <Route path="about-project" element={<AboutProject />} />
+
+            {/* -----!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!----- */}
+            <Route path="signup" element={<Register />} />
+            <Route path="signin" element={<Auth />} />
           </Route>
         </Route>
 

@@ -88,6 +88,7 @@ export type InputProps = {
   formik: any;
   value: string | number;
   name: string;
+  type?: string;
   placeholder: string;
   onKeyPress?: (evt: ReactKeyboardEvent<HTMLInputElement>) => void;
   handleChange: (evt: ChangeEvent<HTMLInputElement>, formik?: any) => void;

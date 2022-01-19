@@ -81,3 +81,21 @@ export const profileValidationSchema = Yup.object({
   activityLevel: Yup.number().required("?"),
   target: Yup.number().required("?"),
 });
+
+export const registerValidationSchema = Yup.object({
+  name: Yup.string()
+    .min(2, "Слишком короткое имя")
+    .max(60, "Слишком длинное имя")
+    .required("Имя не может быть пустым"),
+  email: Yup.string()
+    .email("Некорректный e-mail")
+    .required("E-mail не может быть пустым"),
+  password: Yup.string()
+    .min(8, "Слишком короткий пароль")
+    .max(20, "Слишком длинный пароль")
+    .required("Пароль не может быть пустым"),
+  repeatPassword: Yup.string()
+    .min(8, "Слишком короткий пароль")
+    .max(20, "Слишком длинный пароль")
+    .required("Пароль не может быть пустым"),
+});
