@@ -20,7 +20,8 @@ import {
 function SavedProfile({ setEditedForm }: SavedProfileProps) {
   const data = useContext(CurrentUserContext)!;
 
-  const { name, age, stature, weight, sex, activityLevel, target } = data;
+  const { email, name, age, stature, weight, sex, activityLevel, target } =
+    data;
 
   const { bmi, bmiText } = calcBMI(weight, stature);
 
@@ -31,15 +32,21 @@ function SavedProfile({ setEditedForm }: SavedProfileProps) {
 
   return (
     <SavedProfileContainer>
+      <Data>
+        <Label>Имя</Label>
+        {name}
+      </Data>
+      <Data>
+        <Label>Email</Label>
+        {email}
+      </Data>
+
       {!!age ? (
         <>
           <Flex>
             <Text>Ваши данные:</Text>
           </Flex>
-          <Data>
-            <Label>Имя</Label>
-            {name}
-          </Data>
+
           <Grid>
             <Data>
               <Label>Возраст</Label>
