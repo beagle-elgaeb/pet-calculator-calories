@@ -31,6 +31,8 @@ function Form({ setEditedForm, loadProfile }: ProfileFormProps) {
 
   const formik = useFormik({
     initialValues: {
+      name: data.name,
+      email: data.email,
       age: data.age ? String(data.age) : "",
       stature: data.stature ? String(data.stature) : "",
       weight: data.weight ? String(data.weight) : "",
@@ -42,6 +44,8 @@ function Form({ setEditedForm, loadProfile }: ProfileFormProps) {
     validationSchema: profileValidationSchema,
     onSubmit: async (values, { resetForm }) => {
       await api.editCalcProfileData({
+        name: name,
+        email: email,
         age: Number(age),
         stature: Number(stature),
         weight: Number(weight),
@@ -57,7 +61,7 @@ function Form({ setEditedForm, loadProfile }: ProfileFormProps) {
     },
   });
 
-  const { age, stature, weight, sex, activityLevel, target } = formik.values;
+  const { name, email, age, stature, weight, sex, activityLevel, target } = formik.values;
 
   const keys = Object.keys(formik.values) as (keyof typeof formik.values)[];
 
@@ -72,6 +76,20 @@ function Form({ setEditedForm, loadProfile }: ProfileFormProps) {
 
   return (
     <FormContainer onSubmit={formik.handleSubmit}>
+      <Input
+        formik={formik}
+        value={name}
+        name="name"
+        placeholder="Имя"
+        handleChange={formik.handleChange}
+      />
+            <Input
+        formik={formik}
+        value={email}
+        name="email"
+        placeholder="Email"
+        handleChange={formik.handleChange}
+      />
       <Title>Введите данные чтобы рассчитать дневную норму калорийности</Title>
       <Inputs>
         <Input

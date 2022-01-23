@@ -23,6 +23,7 @@ function App() {
       const user = await api.getProfileData();
 
       setCurrentUser(user);
+      closeAllPopups();
     } catch (err) {
       console.log(err);
     }
@@ -135,9 +136,11 @@ function App() {
 export default App;
 
 function AppAuth({ currentUser }: { currentUser: UserType | undefined }) {
-  return <>{currentUser ? <Outlet /> : <Navigate to="/signin" />}</>;
+  const auth = localStorage.getItem("auth");
+
+  return currentUser ? <Outlet /> : auth ? null : <Navigate to="/signin" />;
 }
 
 function AppNotAuth({ currentUser }: { currentUser: UserType | undefined }) {
-  return <>{currentUser ? <Navigate to="/" /> : <Outlet />}</>;
+  return currentUser ? <Navigate to="/" /> : <Outlet />;
 }

@@ -68,6 +68,10 @@ export const EditButton = styled.button`
   ${HoverAnimation}
 `;
 
+export const EditPassButton = styled(EditButton)`
+  margin: 5px auto;
+`;
+
 export const Text = styled.p`
   align-self: center;
   font-size: 16px;

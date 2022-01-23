@@ -126,6 +126,8 @@ export type MealsInputValues = {
 };
 
 export type ProfileInputValues = {
+  name: string;
+  email: string;
   age: string;
   stature: string;
   weight: string;

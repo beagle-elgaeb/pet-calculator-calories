@@ -10,6 +10,7 @@ import { SavedProfileProps } from "../../utils/types";
 import {
   Data,
   EditButton,
+  EditPassButton,
   Flex,
   Grid,
   Label,
@@ -115,6 +116,14 @@ function SavedProfile({ setEditedForm }: SavedProfileProps) {
       >
         Редактировать
       </EditButton>
+
+      <EditPassButton
+        type="button"
+        aria-label="Редактировать пароль"
+        // onClick={() => setEditedForm(true)}
+      >
+        Редактировать пароль
+      </EditPassButton>
     </SavedProfileContainer>
   );
 }

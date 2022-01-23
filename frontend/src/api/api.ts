@@ -59,6 +59,8 @@ export async function getProfileData() {
 }
 
 export async function editCalcProfileData({
+  name,
+  email,
   age,
   stature,
   weight,
@@ -66,6 +68,8 @@ export async function editCalcProfileData({
   activityLevel,
   target,
 }: {
+  name: string;
+  email: string;
   age: number;
   stature: number;
   weight: number;
@@ -76,7 +80,16 @@ export async function editCalcProfileData({
   const data = await fetch(`${BaseUrl}/users/me`, {
     method: "PATCH",
     headers: jsonHeaders,
-    body: JSON.stringify({ age, stature, weight, sex, activityLevel, target }),
+    body: JSON.stringify({
+      name,
+      email,
+      age,
+      stature,
+      weight,
+      sex,
+      activityLevel,
+      target,
+    }),
     credentials: "include",
   });
 
