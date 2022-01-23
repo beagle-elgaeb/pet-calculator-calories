@@ -5,11 +5,12 @@ import Menu from "./Menu";
 import {
   Buttons,
   Close,
+  Logout,
   MenuPopupContainer,
   MenuPopupOverlay,
 } from "./MenuPopup.styles";
 
-function MenuPopup({ isOpen, onClose, onKeydown }: MenuPopupProps) {
+function MenuPopup({ isOpen, onClose, onKeydown, onLogout }: MenuPopupProps) {
   useEventListener(isOpen, onKeydown, "keydown");
 
   return (
@@ -20,6 +21,7 @@ function MenuPopup({ isOpen, onClose, onKeydown }: MenuPopupProps) {
           <Close onClick={onClose}></Close>
         </Buttons>
         <Menu onClose={onClose} />
+        <Logout onClick={onLogout}>Выйти из профиля</Logout>
       </MenuPopupContainer>
     </MenuPopupOverlay>
   );

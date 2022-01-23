@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
-import { State } from "../../redux/types";
-import { calcBMI, calcNutrients } from "../../utils/math";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { calcBMI, calcMetabolism, calcNutrients } from "../../utils/math";
 import {
   optionsActivity,
   optionsSex,
@@ -18,46 +18,49 @@ import {
 } from "./SavedProfile.styles";
 
 function SavedProfile({ setEditedForm }: SavedProfileProps) {
-  const data = useSelector((state: State) => state.profile);
+  const data = useContext(CurrentUserContext)!;
 
-  const { bmi, bmiText } = calcBMI(data.name, data.weight, data.stature);
+  const { name, age, stature, weight, sex, activityLevel, target } = data;
+
+  const { bmi, bmiText } = calcBMI(weight, stature);
 
   const { targetProtein, targetFat, targetCarb } = calcNutrients(
-    data.targetMetabolism
+    calcMetabolism({ age, stature, weight, sex, activityLevel, target })
+      .targetMetabolism
   );
 
   return (
     <SavedProfileContainer>
-      {!!data.name ? (
+      {!!age ? (
         <>
           <Flex>
             <Text>Ваши данные:</Text>
           </Flex>
           <Data>
             <Label>Имя</Label>
-            {data.name}
+            {name}
           </Data>
           <Grid>
             <Data>
               <Label>Возраст</Label>
-              {data.age}
+              {age}
             </Data>
             <Data>
               <Label>Рост, см</Label>
-              {data.stature}
+              {stature}
             </Data>
             <Data>
               <Label>Вес, кг</Label>
-              {data.weight}
+              {weight}
             </Data>
           </Grid>
           <Data>
             <Label>Пол</Label>
-            {optionsSex.find((o) => o.value === data.sex)!.text}
+            {optionsSex.find((o) => o.value === sex)!.text}
           </Data>
           <Data>
             <Label>Уровень активности</Label>
-            {optionsActivity.find((o) => o.value === data.activityLevel)!.span}
+            {optionsActivity.find((o) => o.value === activityLevel)!.span}
           </Data>
           <Data>
             <Label>Индекс массы тела</Label>
@@ -66,12 +69,19 @@ function SavedProfile({ setEditedForm }: SavedProfileProps) {
           <Flex>
             <Text>Ваша цель:</Text>
           </Flex>
-          <Data>
-            {optionsTarget.find((o) => o.value === data.target)!.text}
-          </Data>
+          <Data>{optionsTarget.find((o) => o.value === target)!.text}</Data>
           <Data>
             <Label>Ккал</Label>
-            {data.targetMetabolism}
+            {
+              calcMetabolism({
+                age,
+                stature,
+                weight,
+                sex,
+                activityLevel,
+                target,
+              }).targetMetabolism
+            }
           </Data>
           <Grid>
             <Data>

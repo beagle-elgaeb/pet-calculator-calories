@@ -2,33 +2,24 @@ import { useFormik } from "formik";
 import * as api from "../../api/api";
 import Input from "../../components/Input";
 import { AuthenticationProps } from "../../utils/types";
-import { registerValidationSchema } from "../../utils/validation";
+import { authorizationValidationSchema } from "../../utils/validation";
 import {
   AuthenticationContainer,
   Button,
   Form,
   Linlk,
   Text,
-  // Title,
 } from "./Authentication.styles";
 
-function Register({ loadProfile }: AuthenticationProps) {
+function Login({ loadProfile }: AuthenticationProps) {
   const formik = useFormik({
     initialValues: {
-      name: "",
       email: "",
       password: "",
-      confirmPassword: "",
     },
-    validationSchema: registerValidationSchema,
+    validationSchema: authorizationValidationSchema,
     onSubmit: async (values, { resetForm }) => {
       try {
-        await api.registration({
-          name: values.name,
-          email: values.email,
-          password: values.password,
-        });
-
         await api.authorization({
           email: values.email,
           password: values.password,
@@ -45,19 +36,12 @@ function Register({ loadProfile }: AuthenticationProps) {
     },
   });
 
-  const { name, email, password, confirmPassword } = formik.values;
+  const { email, password } = formik.values;
 
   return (
     <AuthenticationContainer>
-      {/* <Title>Регистрация</Title> */}
+      {/* <Title>Авторизация</Title> */}
       <Form onSubmit={formik.handleSubmit}>
-        <Input
-          formik={formik}
-          value={name}
-          name="name"
-          placeholder="Имя"
-          handleChange={formik.handleChange}
-        />
         <Input
           formik={formik}
           value={email}
@@ -69,31 +53,18 @@ function Register({ loadProfile }: AuthenticationProps) {
           formik={formik}
           value={password}
           name="password"
-          type="password"
           placeholder="Пароль"
           handleChange={formik.handleChange}
         />
-        <Input
-          formik={formik}
-          value={confirmPassword}
-          name="confirmPassword"
-          type="password"
-          placeholder="Подтверждение пароля"
-          handleChange={formik.handleChange}
-        />
-        <Button
-          type="submit"
-          aria-label="Зарегистрироваться"
-          disabled={!formik.isValid}
-        >
-          Зарегистрироваться
+        <Button type="submit" aria-label="Войти" disabled={!formik.isValid}>
+          Войти
         </Button>
       </Form>
       <Text>
-        Уже зарегистрированы? <Linlk to="/signin">Вход</Linlk>
+        Не зарегистрированы? <Linlk to="/signup">Регистрация</Linlk>
       </Text>
     </AuthenticationContainer>
   );
 }
 
-export default Register;
+export default Login;

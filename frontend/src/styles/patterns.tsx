@@ -111,9 +111,9 @@ export const TablePattern = css`
 export const TitleAuthPattern = css`
   font-size: 22px;
   line-height: 24px;
-  font-weight: 300;
-  text-align: center;
-  text-transform: uppercase;
+  font-weight: 400;
+  /* text-align: left; */
+  /* text-transform: uppercase; */
   margin: 10px 0 30px;
 `;
 
@@ -132,6 +132,25 @@ export const LinkAuthPattern = css`
   color: ${purple};
   text-decoration: none;
   margin: 0 auto 60px;
+`;
+
+export const ButtonAuthPattern = ({ disabled }: { disabled: boolean }) => css`
+  height: 36px;
+  width: 100%;
+  box-sizing: border-box;
+  background: ${lightPurple};
+  border: 1px solid ${mediumPurple};
+  border-radius: 5px;
+  outline: none;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+  color: ${disabled ? `${mediumPurple}` : `${purple}`};
+  margin: 60px 0;
+
+  :hover {
+    box-shadow: 0 0 5px 1px ${mediumPurple};
+  }
 `;
 
 export const HoverAnimation = css`

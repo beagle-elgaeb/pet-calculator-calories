@@ -1,12 +1,12 @@
 import {
   AboutProjectContainer,
+  List,
+  ListItem,
+  ListItemUnavailable,
+  Span,
   Subtitlele,
   Text,
   Title,
-  List,
-  ListItem,
-  Span,
-  ListItemUnavailable,
 } from "./AboutProject.styles";
 
 function AboutProject() {

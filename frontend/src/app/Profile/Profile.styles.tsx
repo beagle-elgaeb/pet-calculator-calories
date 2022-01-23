@@ -16,7 +16,7 @@ export const LinkToCalc = styled(Link)`
   color: ${purple};
   text-decoration: none;
   text-transform: lowercase;
-  margin: 0 auto 60px;
+  margin: 10px auto 60px;
 
   ${HoverAnimation}
 `;

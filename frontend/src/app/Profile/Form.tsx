@@ -1,10 +1,9 @@
 import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import { useContext } from "react";
+import * as api from "../../api/api";
 import Input from "../../components/Input";
 import InputSelect from "../../components/InputSelect";
-import { addHistory } from "../../redux/historySlise";
-import { saveProfile } from "../../redux/profileSlise";
-import { State } from "../../redux/types";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { calcAllMetabolism, calcMetabolism } from "../../utils/math";
 import {
   optionsActivity,
@@ -27,52 +26,52 @@ import {
   Title,
 } from "./Form.styles";
 
-function Form({ setEditedForm }: ProfileFormProps) {
-  const dispatch = useDispatch();
+function Form({ setEditedForm, loadProfile }: ProfileFormProps) {
+  const data = useContext(CurrentUserContext)!;
 
-  // -----1-----
-  const data = useSelector((state: State) => state.profile);
-
-  // -----2-----
   const formik = useFormik({
     initialValues: {
-      name: data.name,
-      age: data.age,
-      stature: data.stature,
-      weight: data.weight,
+      age: data.age ? String(data.age) : "",
+      stature: data.stature ? String(data.stature) : "",
+      weight: data.weight ? String(data.weight) : "",
       sex: data.sex,
       activityLevel: data.activityLevel,
       target: data.target,
     } as ProfileInputValues,
     enableReinitialize: true,
     validationSchema: profileValidationSchema,
-    onSubmit: (values, { resetForm }) => {
-      dispatch(saveProfile({ ...values, baseMetabolism, targetMetabolism }));
-      dispatch(addHistory({ targetMetabolism }));
+    onSubmit: async (values, { resetForm }) => {
+      await api.editCalcProfileData({
+        age: Number(age),
+        stature: Number(stature),
+        weight: Number(weight),
+        sex,
+        activityLevel,
+        target,
+      });
+      // dispatch(saveProfile({ ...values, baseMetabolism, targetMetabolism }));
 
+      await loadProfile();
       setEditedForm(false);
       resetForm();
     },
   });
 
-  const { name, age, stature, weight, sex, activityLevel, target } =
-    formik.values;
+  const { age, stature, weight, sex, activityLevel, target } = formik.values;
 
   const keys = Object.keys(formik.values) as (keyof typeof formik.values)[];
 
-  const { baseMetabolism, activeMetabolism, targetMetabolism } = calcMetabolism(
-    formik.values
-  );
+  const { baseMetabolism, activeMetabolism } = calcMetabolism({
+    age: Number(age),
+    stature: Number(stature),
+    weight: Number(weight),
+    sex,
+    activityLevel,
+    target,
+  });
 
   return (
     <FormContainer onSubmit={formik.handleSubmit}>
-      <Input
-        formik={formik}
-        value={name}
-        name="name"
-        placeholder="Имя"
-        handleChange={formik.handleChange}
-      />
       <Title>Введите данные чтобы рассчитать дневную норму калорийности</Title>
       <Inputs>
         <Input
@@ -170,10 +169,3 @@ function Form({ setEditedForm }: ProfileFormProps) {
 }
 
 export default Form;
-
-// 1.   Получение соохранённых даннных пользователя
-// 2.   Данные для управления элементами формы:
-//      - при сабмите формы сохраняются введёные данные введёные в форму,
-//      создаётся запись о смене целевого метаболизма (для корректной
-//      отрисовки графиков на каждый день), форма возвращается в
-//      нередактируемое состояние, сброс формы

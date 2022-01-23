@@ -1,3 +1,4 @@
+import { email } from "@sideway/address";
 import * as Yup from "yup";
 
 const schemaPFC = Yup.number()
@@ -70,10 +71,6 @@ export const mealsValidationSchema = (form: "create" | "edit") => {
 };
 
 export const profileValidationSchema = Yup.object({
-  name: Yup.string()
-    .min(2, "Слишком короткое имя")
-    .max(60, "Слишком длинное имя")
-    .required("Имя не может быть пустым"),
   age: Yup.number().min(13, "От 13").max(80, "До 80").required("Нужно"),
   stature: Yup.number().min(100, "Мало").max(300, "Много").required("Нужно"),
   weight: Yup.number().min(40, "Мало").max(300, "Много").required("Нужно"),
@@ -86,16 +83,47 @@ export const registerValidationSchema = Yup.object({
   name: Yup.string()
     .min(2, "Слишком короткое имя")
     .max(60, "Слишком длинное имя")
-    .required("Имя не может быть пустым"),
+    .required("Введите, пожалуйста, имя"),
   email: Yup.string()
-    .email("Некорректный e-mail")
-    .required("E-mail не может быть пустым"),
+    .test("joi-email", "Введите, пожулуйста, корректный email", (value) =>
+      email.isValid(value ?? "")
+    )
+    .required("Введите, пожалуйста, email"),
   password: Yup.string()
-    .min(8, "Слишком короткий пароль")
-    .max(20, "Слишком длинный пароль")
-    .required("Пароль не может быть пустым"),
-  repeatPassword: Yup.string()
-    .min(8, "Слишком короткий пароль")
-    .max(20, "Слишком длинный пароль")
-    .required("Пароль не может быть пустым"),
+    .min(8, "Пароль не должно быть короче 8 символов")
+    .matches(/^[a-zA-Z0-9]/, "Пароль может сожержать только латинские символы")
+    .matches(
+      /^(?=.*[A-Z])/,
+      "Пароль должен содержать хотябы один символ верхнего регистра"
+    )
+    .matches(
+      /^(?=.*[a-z])/,
+      "Пароль должен содержать хотябы один символ нижнего регистра"
+    )
+    .matches(/^(?=.*[0-9])/, "Пароль должен содержать хотябы одну цифру")
+    .required("Введите, пожалуйста, пароль"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Пароли не совпадают")
+    .required("Введите пароль повторно, пожалуйста"),
+});
+
+export const authorizationValidationSchema = Yup.object({
+  email: Yup.string()
+    .test("joi-email", "Введите, пожулуйста, корректный email", (value) =>
+      email.isValid(value ?? "")
+    )
+    .required("Введите, пожалуйста, email"),
+  password: Yup.string()
+    .min(8, "Пароль не должно быть короче 8 символов")
+    .matches(/^[a-zA-Z0-9]/, "Пароль может сожержать только латинские символы")
+    .matches(
+      /^(?=.*[A-Z])/,
+      "Пароль должен содержать хотябы один символ верхнего регистра"
+    )
+    .matches(
+      /^(?=.*[a-z])/,
+      "Пароль должен содержать хотябы один символ нижнего регистра"
+    )
+    .matches(/^(?=.*[0-9])/, "Пароль должен содержать хотябы одну цифру")
+    .required("Введите, пожалуйста, пароль"),
 });

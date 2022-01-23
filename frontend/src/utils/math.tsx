@@ -1,5 +1,5 @@
 import { MealItem } from "../redux/types";
-import { MealsInputValues, ProfileInputValues } from "./types";
+import { MealsInputValues, UserType } from "./types";
 
 export function calcСalories(values: MealsInputValues): number {
   let result = 0;
@@ -51,22 +51,16 @@ export function calcMetabolism({
   sex,
   activityLevel,
   target,
-}: ProfileInputValues) {
+}: UserType) {
   let baseMetabolism = 0;
 
   if (sex === 12) {
     baseMetabolism = Math.round(
-      447.593 +
-        Number(weight) * 9.247 +
-        Number(stature) * 3.098 -
-        Number(age) * 4.33
+      447.593 + weight * 9.247 + stature * 3.098 - age * 4.33
     );
   } else if (sex === 7) {
     baseMetabolism = Math.round(
-      88.362 +
-        Number(weight) * 13.397 +
-        Number(stature) * 4.799 -
-        Number(age) * 5.667
+      88.362 + weight * 13.397 + stature * 4.799 - age * 5.667
     );
   }
 
@@ -112,32 +106,24 @@ export function calcNutrients(targetMetabolism: number) {
   };
 }
 
-export function calcBMI(
-  name: string,
-  weight: number | string,
-  stature: number | string
-) {
+export function calcBMI(weight: number, stature: number) {
   let bmiText = "";
-  let bmi;
+  const bmi = Math.round(weight / ((stature / 100) ^ 2));
 
-  if (!!name) {
-    bmi = Math.round(Number(weight) / ((Number(stature) / 100) ^ 2));
-
-    if (bmi <= 16) {
-      bmiText = "выраженный дефицит";
-    } else if (bmi > 16 && bmi <= 18.5) {
-      bmiText = "дефицит";
-    } else if (bmi > 18.5 && bmi <= 25) {
-      bmiText = "норма";
-    } else if (bmi > 25 && bmi <= 30) {
-      bmiText = "избыточная масса";
-    } else if (bmi > 30 && bmi <= 35) {
-      bmiText = "ожирение 1 степени";
-    } else if (bmi > 35 && bmi <= 40) {
-      bmiText = "ожирение 2 степени";
-    } else if (bmi > 40) {
-      bmiText = "ожирение 3 степени";
-    }
+  if (bmi <= 16) {
+    bmiText = "выраженный дефицит";
+  } else if (bmi > 16 && bmi <= 18.5) {
+    bmiText = "дефицит";
+  } else if (bmi > 18.5 && bmi <= 25) {
+    bmiText = "норма";
+  } else if (bmi > 25 && bmi <= 30) {
+    bmiText = "избыточная масса";
+  } else if (bmi > 30 && bmi <= 35) {
+    bmiText = "ожирение 1 степени";
+  } else if (bmi > 35 && bmi <= 40) {
+    bmiText = "ожирение 2 степени";
+  } else if (bmi > 40) {
+    bmiText = "ожирение 3 степени";
   }
 
   return { bmi, bmiText };

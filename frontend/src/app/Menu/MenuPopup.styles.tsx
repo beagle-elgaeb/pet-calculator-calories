@@ -1,6 +1,11 @@
 import styled from "@emotion/styled/macro";
 import cross from "../../icons/cross.svg";
-import { lightPurple, purpleTransparent } from "../../styles/colors";
+import {
+  lightPurple,
+  mediumPurple,
+  purple,
+  purpleTransparent,
+} from "../../styles/colors";
 import { HoverAnimation } from "../../styles/patterns";
 
 export const MenuPopupOverlay = styled.div<{ opened: boolean }>`
@@ -49,11 +54,31 @@ export const Close = styled.button`
   background-size: contain;
   border: none;
   border-radius: 2px;
-
   outline: none;
 
   :hover {
     transform: rotate(10deg);
+  }
+
+  ${HoverAnimation}
+`;
+
+export const Logout = styled.button`
+  height: 36px;
+  width: 220px;
+  box-sizing: border-box;
+  background: ${lightPurple};
+  border: 1px solid ${mediumPurple};
+  border-radius: 5px;
+  outline: none;
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 400;
+  color: ${purple};
+  margin: 0 0 60px 0;
+
+  :hover {
+    box-shadow: 0 0 5px 1px ${mediumPurple};
   }
 
   ${HoverAnimation}

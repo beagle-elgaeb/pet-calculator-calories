@@ -1,8 +1,12 @@
-import Days from "../Days/Days";
-import Form from "./Form";
-import { CalculatorContainer, OpenFormButton, OpenFormButtonIcon } from "./Calculator.styles";
-import { CalculatorProps } from "../../utils/types";
 import { useState } from "react";
+import { CalculatorProps } from "../../utils/types";
+import Days from "../Days/Days";
+import {
+  CalculatorContainer,
+  OpenFormButton,
+  OpenFormButtonIcon,
+} from "./Calculator.styles";
+import Form from "./Form";
 
 function Calculator({ handleMealClick }: CalculatorProps) {
   const [calculatorVisible, setCalculatorVisible] = useState(true);

@@ -49,6 +49,6 @@ export const ListItem = styled.li`
 `;
 
 export const ListItemUnavailable = styled.li`
-color: ${mediumPurple};
+  color: ${mediumPurple};
   text-decoration: line-through;
 `;

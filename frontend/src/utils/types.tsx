@@ -8,6 +8,14 @@ export type AppLayoutProps = {
   menuPopupOpen: boolean;
 };
 
+export type ProfileProps = {
+  loadProfile: () => void;
+};
+
+export type AuthenticationProps = {
+  loadProfile: () => void;
+};
+
 export type HeaderProps = {
   onMenuClick: () => void;
   popupOpened: boolean;
@@ -47,6 +55,7 @@ export type MenuPopupProps = {
   isOpen: boolean;
   onClose: () => void;
   onKeydown: (evt: KeyboardEvent) => void;
+  onLogout: () => void;
 };
 
 export type MealPopupProps = {
@@ -73,6 +82,7 @@ export type SavedProfileProps = {
 
 export type ProfileFormProps = {
   setEditedForm: (value: boolean) => void;
+  loadProfile: () => void;
 };
 
 export type MenuProps = {
@@ -116,10 +126,21 @@ export type MealsInputValues = {
 };
 
 export type ProfileInputValues = {
-  name: string;
   age: string;
   stature: string;
   weight: string;
+  sex: number;
+  activityLevel: number;
+  target: number;
+};
+
+export type UserType = {
+  id?: number;
+  name?: string;
+  email?: string;
+  age: number;
+  stature: number;
+  weight: number;
   sex: number;
   activityLevel: number;
   target: number;
